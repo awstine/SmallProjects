@@ -17,43 +17,45 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+@Suppress("ktlint:standard:function-naming")
 @Composable
 fun TaskItem(
     taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     onClose: () -> Unit,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     Row(
         modifier = Modifier,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 16.dp),
-            text  = taskName
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp),
+            text = taskName,
         )
         Checkbox(
             checked = checked,
-            onCheckedChange = onCheckedChange
+            onCheckedChange = onCheckedChange,
         )
         IconButton(onClick = onClose) {
             Icon(
                 imageVector = Icons.Default.Close,
-                contentDescription = "Close" )
+                contentDescription = "Close",
+            )
         }
-
     }
-
 }
 
+@Suppress("ktlint:standard:function-naming")
 @Composable
 fun TaskItem(
     taskName: String,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     var checkState by remember {
         mutableStateOf(false)
     }
@@ -61,8 +63,8 @@ fun TaskItem(
     TaskItem(
         taskName = taskName,
         checked = checkState,
-        onCheckedChange = {newValue -> checkState = newValue},
-        onClose = {  },
-        modifier = modifier
+        onCheckedChange = { newValue -> checkState = newValue },
+        onClose = { },
+        modifier = modifier,
     )
 }
