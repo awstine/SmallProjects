@@ -5,6 +5,6 @@
     <string name = "tip_amount">Tip Amount: %s</string>
     //
     <string name = "tip_percentage">Tip Percentage</string>
-    <string name = "reset">Reset</string>
+    <string name = "round_up">Round Up?</string>
 
 </resources>

@@ -8,18 +8,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -63,7 +67,9 @@ fun TipTimeLayout() {
 
     var tipInput by remember { mutableStateOf("") }
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
-    val tip = calculateTip(amount, tipPercent)
+    val tip = calculateTip(amount, tipPercent, roundUp = true)
+
+    var roundUp by remember { mutableStateOf(false) }
 
     Column(
         modifier =
@@ -102,14 +108,22 @@ fun TipTimeLayout() {
             label = R.string.tip_percentage,
             value = tipInput,
             onValueChange = { tipInput = it },
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done
-            ),
+            keyboardOptions =
+                KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done,
+                ),
             modifier =
                 Modifier
                     .padding(bottom = 32.dp)
                     .fillMaxWidth(),
+        )
+        RoundingOff(
+            roundUp = roundUp,
+            onRoundUpChanged = { roundUp = it },
+            modifier =
+                Modifier
+                    .padding(bottom = 32.dp),
         )
 
         Text(
@@ -123,8 +137,14 @@ fun TipTimeLayout() {
 private fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0,
+    roundUp: Boolean,
 ): String {
-    val tip = tipPercent / 100 * amount
+    var tip = tipPercent / 100 * amount
+
+    if (roundUp) {
+        // Rounds up the tip amount
+        tip = kotlin.math.ceil(tip)
+    }
     return NumberFormat.getCurrencyInstance().format(tip)
 }
 
@@ -146,4 +166,31 @@ fun EditNumberField(
         singleLine = true,
         keyboardOptions = keyboardOptions,
     )
+}
+
+@Suppress("ktlint:standard:function-naming")
+@Composable
+fun RoundingOff(
+    roundUp: Boolean,
+    onRoundUpChanged: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .size(48.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(text = stringResource(R.string.round_up))
+
+        Switch(
+            modifier =
+                modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.End),
+            checked = roundUp,
+            onCheckedChange = onRoundUpChanged,
+        )
+    }
 }
