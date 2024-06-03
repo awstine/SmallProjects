@@ -61,8 +61,8 @@ fun ImageCard(
             painter = painterResource(id = imageData.imageResource),
             contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth()
-                .clip(MaterialTheme.shapes.large)
+                .fillMaxSize()
+                .clip(RoundedCornerShape(8.dp))
                     )
             }
         Column(
@@ -79,7 +79,6 @@ fun ImageCard(
                 modifier =
                     Modifier
                         .fillMaxWidth(),
-                
                 // mainAxisSpacing = 8.dp,
                 // mainAxisSize = LayoutSize.Expand
             ) {
