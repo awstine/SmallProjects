@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.materials3"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,7 +69,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Coil
-    implementation(libs.coil)
-    //implementation(libs.coil.kt.coil)
-    implementation(libs.coil.kt.coil.compose)
+//    implementation(libs.coil)
+//    implementation(libs.coil.kt.coil.compose)
+//    implementation("io.coil-kt:coil-svg:1.2.0")
 }

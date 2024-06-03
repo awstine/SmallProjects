@@ -1,5 +1,3 @@
-@file:Suppress("SameParameterValue", "ktlint:standard:import-ordering")
-
 package com.example.statemanagement2
 
 import android.annotation.SuppressLint
@@ -41,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.statemanagement2.ui.theme.StateManagement2Theme
 import org.jetbrains.annotations.VisibleForTesting
@@ -64,9 +61,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// @Preview(showBackground = true)
 @Suppress("ktlint:standard:function-naming")
 @Composable
-@Preview(showBackground = true)
 fun TipTimeLayout() {
     var amountInput by remember { mutableStateOf("") }
     val amount = amountInput.toDoubleOrNull() ?: 0.0
