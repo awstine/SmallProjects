@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         LogInScreen(navController)
                     }
                     composable(route = Screen.HomeScreen.route) {
-                        HomeScreen(navController)
+                        HomeScreen(navController, onNavigationIconClick = {})
                     }
                     composable(route = Screen.SignInScreen.route) {
                         SignInScreen(navController)

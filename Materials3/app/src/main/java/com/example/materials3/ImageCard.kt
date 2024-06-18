@@ -42,7 +42,6 @@ import kotlin.random.Random
 @Suppress("ktlint:standard:function-naming")
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-@Preview
 fun ImageCard(
     title: String,
     description: String,
