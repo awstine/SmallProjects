@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -21,6 +23,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -35,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -114,8 +118,26 @@ fun LogInScreen(
                         contentDescription = null,
                     )
                 },
+                keyboardOptions =
+                    KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Password,
+                    ),
                 label = "Password",
                 modifier = Modifier.padding(8.dp),
+                // isPasswordVisible = isPasswordVisible,
+                visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    IconButton(
+                        onClick = { isPasswordVisible = !isPasswordVisible },
+                    ) {
+                        val icon =
+                            if (isPasswordVisible) {
+                                Icons.Default.CheckCircle
+                            } else {
+                                Icons.Default.Close
+                            }
+                    }
+                },
             )
             Spacer(modifier = Modifier.height(8.dp))
             InputField(
@@ -193,6 +215,7 @@ fun InputField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
+    trailingIcon: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
