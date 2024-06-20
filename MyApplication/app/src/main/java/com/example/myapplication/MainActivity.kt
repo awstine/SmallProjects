@@ -16,10 +16,15 @@ import com.example.myapplication.Composables.LogInScreen
 import com.example.myapplication.Composables.SignInScreen
 import com.example.myapplication.data.Screen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    private val auth: FirebaseAuth by lazy { Firebase.auth }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,10 +39,10 @@ class MainActivity : ComponentActivity() {
                         GetStartedScreen(navController)
                     }
                     composable(route = Screen.LogInScreen.route) {
-                        LogInScreen(navController)
+                        LogInScreen(navController, onSignedIn = {})
                     }
                     composable(route = Screen.HomeScreen.route) {
-                        HomeScreen(navController, onNavigationIconClick = {})
+                        HomeScreen(navController, onNavigationIconClick = {}, auth = auth)
                     }
                     composable(route = Screen.SignInScreen.route) {
                         SignInScreen(navController)

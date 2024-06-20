@@ -43,6 +43,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -58,6 +60,7 @@ import com.example.myapplication.data.Screen
 import com.example.myapplication.data.hairList
 import com.example.myapplication.data.menHair
 import com.example.myapplication.data.womenHair
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,268 +69,279 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     navController: NavController,
     onNavigationIconClick: () -> Unit,
+    auth: FirebaseAuth,
 ) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-
-    Surface(
-        color = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary,
-    ) {
-        val scope = rememberCoroutineScope()
-        val snackbarHostState = remember { SnackbarHostState() }
-        val configuration = LocalConfiguration.current
-        val drawerWidth = 0.8f * configuration.screenWidthDp.dp
-
-        ModalNavigationDrawer(
-            drawerState = drawerState,
-            gesturesEnabled = true,
-            drawerContent = {
-                Column(
-                    modifier =
-                        Modifier
-                            .fillMaxHeight()
-                            .width(drawerWidth)
-                            .padding(16.dp),
-                ) {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                            navController.navigate(Screen.HomeScreen.route)
-                        },
-                    ) {
-                        Text(text = "Home")
-//
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                            navController.navigate(Screen.FavouriteScreen.route)
-                        },
-                    ) {
-                        Text(text = "Favourite")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                            navController.navigate(Screen.FavouriteScreen.route)
-                        },
-                    ) {
-                        Text(text = "Services")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                        },
-                    ) {
-                        Text(text = "Gallery")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                        },
-                    ) {
-                        Text(text = "Stylists")
-                    }
-                }
+    val user by remember { mutableStateOf(auth.currentUser) }
+    if (user == null) {
+        LogInScreen(
+            navController = navController,
+            onSignedIn = { signedInUser ->
+                user = signedInUser
             },
-            content = {
-                Scaffold(
-                    snackbarHost = {
-                        SnackbarHost(hostState = snackbarHostState)
-                    },
-                    topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(text = "Our Saloon App")
-                            },
-                            navigationIcon = {
-                                IconButton(onClick = {
-                                    scope.launch {
-                                        drawerState.open()
-                                    }
-                                    Log.d("HomeScreen", "Drawer opened")
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Menu,
-                                        contentDescription = null,
-                                    )
-                                }
-                            },
-                            actions = {
-                                IconButton(onClick = {}) {
-                                    Icon(
-                                        imageVector = Icons.Default.Search,
-                                        contentDescription = null,
-                                    )
-                                }
-                            },
-                        )
-                    },
-                    bottomBar = {
-                        BottomBar(
-                            onHomeClick = { navController.navigate(Screen.HomeScreen.route) },
-                            onSearchClick = { scope.launch { snackbarHostState.showSnackbar("Search not implimented") } },
-                            onFavoritesClick = { navController.navigate(Screen.FavouriteScreen.route) },
-                        )
-                    },
-                ) { paddingValues ->
+        )
+    } else {
+        val drawerState = rememberDrawerState(DrawerValue.Closed)
+
+        Surface(
+            color = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+        ) {
+            val scope = rememberCoroutineScope()
+            val snackbarHostState = remember { SnackbarHostState() }
+            val configuration = LocalConfiguration.current
+            val drawerWidth = 0.8f * configuration.screenWidthDp.dp
+
+            ModalNavigationDrawer(
+                drawerState = drawerState,
+                gesturesEnabled = true,
+                drawerContent = {
                     Column(
                         modifier =
                             Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues)
-                                .padding(8.dp)
-                                .verticalScroll(rememberScrollState()),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                                .fillMaxHeight()
+                                .width(drawerWidth)
+                                .padding(16.dp),
                     ) {
-                        Text(
-                            text = "Trending Hairstyle",
-                            fontSize = 40.sp,
-                            modifier = Modifier.padding(9.dp),
-                            color = MaterialTheme.colorScheme.onSurface,
-                            lineHeight = 28.sp,
-                            letterSpacing = 0.15.sp,
-                            fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
-                        )
-                        LazyRow(
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                                navController.navigate(Screen.HomeScreen.route)
+                            },
+                        ) {
+                            Text(text = "Home")
+//
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                                navController.navigate(Screen.FavouriteScreen.route)
+                            },
+                        ) {
+                            Text(text = "Favourite")
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                                navController.navigate(Screen.FavouriteScreen.route)
+                            },
+                        ) {
+                            Text(text = "Services")
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                            },
+                        ) {
+                            Text(text = "Gallery")
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                            },
+                        ) {
+                            Text(text = "Stylists")
+                        }
+                    }
+                },
+                content = {
+                    Scaffold(
+                        snackbarHost = {
+                            SnackbarHost(hostState = snackbarHostState)
+                        },
+                        topBar = {
+                            TopAppBar(
+                                title = {
+                                    Text(text = "Our Saloon App")
+                                },
+                                navigationIcon = {
+                                    IconButton(onClick = {
+                                        scope.launch {
+                                            drawerState.open()
+                                        }
+                                        Log.d("HomeScreen", "Drawer opened")
+                                    }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = null,
+                                        )
+                                    }
+                                },
+                                actions = {
+                                    IconButton(onClick = {}) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = null,
+                                        )
+                                    }
+                                },
+                            )
+                        },
+                        bottomBar = {
+                            BottomBar(
+                                onHomeClick = { navController.navigate(Screen.HomeScreen.route) },
+                                onSearchClick = { scope.launch { snackbarHostState.showSnackbar("Search not implimented") } },
+                                onFavoritesClick = { navController.navigate(Screen.FavouriteScreen.route) },
+                            )
+                        },
+                    ) { paddingValues ->
+                        Column(
                             modifier =
                                 Modifier
-                                    .fillMaxWidth()
-                                    .background(MaterialTheme.colorScheme.background),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    .fillMaxSize()
+                                    .padding(paddingValues)
+                                    .padding(8.dp)
+                                    .verticalScroll(rememberScrollState()),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            items(hairList) { hair ->
-                                Card(
-                                    modifier =
-                                        Modifier
-                                            .width(250.dp)
-                                            .height(350.dp),
-                                    shape = RoundedCornerShape(8.dp),
-                                    // elevation = 4.dp
-                                ) {
-                                    Column(
-                                        modifier = Modifier.fillMaxSize(),
-                                        verticalArrangement = Arrangement.Bottom,
-                                        horizontalAlignment = Alignment.CenterHorizontally,
+                            Text(
+                                text = "Trending Hairstyle",
+                                fontSize = 40.sp,
+                                modifier = Modifier.padding(9.dp),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = 28.sp,
+                                letterSpacing = 0.15.sp,
+                                fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                            )
+                            LazyRow(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.background),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                items(hairList) { hair ->
+                                    Card(
+                                        modifier =
+                                            Modifier
+                                                .width(250.dp)
+                                                .height(350.dp),
+                                        shape = RoundedCornerShape(8.dp),
+                                        // elevation = 4.dp
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = hair.img),
-                                            contentDescription = null,
-                                            modifier = Modifier,
-                                        )
-                                        Text(
-                                            text = hair.hairName,
-                                            modifier = Modifier.padding(8.dp),
-                                        )
-                                        Text(
-                                            text = "$${hair.hairPrice}",
-                                            modifier = Modifier.padding(8.dp),
-                                        )
+                                        Column(
+                                            modifier = Modifier.fillMaxSize(),
+                                            verticalArrangement = Arrangement.Bottom,
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                        ) {
+                                            Image(
+                                                painter = painterResource(id = hair.img),
+                                                contentDescription = null,
+                                                modifier = Modifier,
+                                            )
+                                            Text(
+                                                text = hair.hairName,
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                            Text(
+                                                text = "$${hair.hairPrice}",
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
-                        Text(
-                            text = "Men",
-                            fontSize = 30.sp,
-                            modifier = Modifier.padding(9.dp),
-                            color = MaterialTheme.colorScheme.onSurface,
-                            lineHeight = 28.sp,
-                            letterSpacing = 0.15.sp,
-                            fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
-                        )
+                            Text(
+                                text = "Men",
+                                fontSize = 30.sp,
+                                modifier = Modifier.padding(9.dp),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = 28.sp,
+                                letterSpacing = 0.15.sp,
+                                fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
+                            )
 
-                        LazyRow(
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .background(MaterialTheme.colorScheme.background),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            items(menHair) { Hair ->
-                                Card(
-                                    modifier =
-                                        Modifier
-                                            .width(250.dp)
-                                            .height(350.dp),
-                                    shape = RoundedCornerShape(8.dp),
-                                    // elevation = 4.dp
-                                ) {
-                                    Column(
-                                        modifier = Modifier.fillMaxSize(),
-                                        verticalArrangement = Arrangement.Bottom,
-                                        horizontalAlignment = Alignment.CenterHorizontally,
+                            LazyRow(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.background),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                items(menHair) { Hair ->
+                                    Card(
+                                        modifier =
+                                            Modifier
+                                                .width(250.dp)
+                                                .height(350.dp),
+                                        shape = RoundedCornerShape(8.dp),
+                                        // elevation = 4.dp
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = Hair.img),
-                                            contentDescription = null,
-                                            modifier = Modifier,
-                                        )
-                                        Text(
-                                            text = Hair.hairName,
-                                            modifier = Modifier.padding(8.dp),
-                                        )
-                                        Text(
-                                            text = "$${Hair.hairPrice}",
-                                            modifier = Modifier.padding(8.dp),
-                                        )
+                                        Column(
+                                            modifier = Modifier.fillMaxSize(),
+                                            verticalArrangement = Arrangement.Bottom,
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                        ) {
+                                            Image(
+                                                painter = painterResource(id = Hair.img),
+                                                contentDescription = null,
+                                                modifier = Modifier,
+                                            )
+                                            Text(
+                                                text = Hair.hairName,
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                            Text(
+                                                text = "$${Hair.hairPrice}",
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
-                        Text(
-                            text = "Women",
-                            fontSize = 30.sp,
-                            modifier = Modifier.padding(9.dp),
-                            color = MaterialTheme.colorScheme.onSurface,
-                            lineHeight = 28.sp,
-                            letterSpacing = 0.15.sp,
-                            fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
-                        )
+                            Text(
+                                text = "Women",
+                                fontSize = 30.sp,
+                                modifier = Modifier.padding(9.dp),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = 28.sp,
+                                letterSpacing = 0.15.sp,
+                                fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
+                            )
 
-                        LazyRow(
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .background(MaterialTheme.colorScheme.background),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            items(womenHair) { hare ->
-                                Card(
-                                    modifier =
-                                        Modifier
-                                            .width(250.dp)
-                                            .height(350.dp),
-                                    shape = RoundedCornerShape(8.dp),
-                                    // elevation = 4.dp
-                                ) {
-                                    Column(
-                                        modifier = Modifier.fillMaxSize(),
-                                        verticalArrangement = Arrangement.Bottom,
-                                        horizontalAlignment = Alignment.CenterHorizontally,
+                            LazyRow(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.background),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                items(womenHair) { hare ->
+                                    Card(
+                                        modifier =
+                                            Modifier
+                                                .width(250.dp)
+                                                .height(350.dp),
+                                        shape = RoundedCornerShape(8.dp),
+                                        // elevation = 4.dp
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = hare.img),
-                                            contentDescription = null,
-                                            modifier = Modifier,
-                                        )
-                                        Text(
-                                            text = hare.hairName,
-                                            modifier = Modifier.padding(8.dp),
-                                        )
-                                        Text(
-                                            text = "$${hare.hairPrice}",
-                                            modifier = Modifier.padding(8.dp),
-                                        )
+                                        Column(
+                                            modifier = Modifier.fillMaxSize(),
+                                            verticalArrangement = Arrangement.Bottom,
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                        ) {
+                                            Image(
+                                                painter = painterResource(id = hare.img),
+                                                contentDescription = null,
+                                                modifier = Modifier,
+                                            )
+                                            Text(
+                                                text = hare.hairName,
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                            Text(
+                                                text = "$${hare.hairPrice}",
+                                                modifier = Modifier.padding(8.dp),
+                                            )
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
-            },
-        )
+                },
+            )
+        }
     }
 }
 

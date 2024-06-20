@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,21 +34,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myapplication.data.Screen
+import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun LogInScreen(navController: NavController) {
+fun LogInScreen(
+    navController: NavController,
+    onSignedIn: (FirebaseAuth) -> Unit,
+) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
+    var isLoggedIn by remember { mutableStateOf(false) }
+    var isPasswordVisible by remember { mutableStateOf(false) }
     val isButtonEnabled = firstName.isNotEmpty() && lastName.isNotEmpty()
     email.isNotEmpty() && password.isNotEmpty()
+
+    // Error message
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier =
@@ -56,87 +72,118 @@ fun LogInScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "SignUp",
+            text = "Create Account",
             style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier.padding(8.dp),
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = MaterialTheme.colorScheme.onTertiary,
             fontFamily = MaterialTheme.typography.headlineLarge.fontFamily,
         )
-        InputField(
-            value = firstName,
-            onValueChange = { firstName = it },
-            label = "First Name",
-            modifier = Modifier.padding(8.dp),
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        InputField(
-            value = lastName,
-            onValueChange = { lastName = it },
-            label = "Last Name",
-            modifier = Modifier.padding(8.dp),
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        InputField(
-            value = password,
-            onValueChange = { password = it },
-            label = "Password",
-            modifier = Modifier.padding(8.dp),
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        InputField(
-            value = email,
-            onValueChange = { email = it },
-            label = "Email",
-            modifier = Modifier.padding(8.dp),
-        )
-        if (!email.contains("@") && email.isNotEmpty()) {
-            Row {
-                Icon(
-                    modifier =
-                        Modifier
-                            .size(20.dp),
-                    imageVector = Icons.Default.Warning,
-                    contentDescription = null,
-                )
+        if (!isLoggedIn) {
+            InputField(
+                value = firstName,
+                onValueChange = { firstName = it },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = null,
+                    )
+                },
+                label = "First Name",
+                modifier = Modifier.padding(8.dp),
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            InputField(
+                value = lastName,
+                onValueChange = { lastName = it },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = null,
+                    )
+                },
+                label = "Last Name",
+                modifier = Modifier.padding(8.dp),
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            InputField(
+                value = password,
+                onValueChange = { password = it },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Lock,
+                        contentDescription = null,
+                    )
+                },
+                label = "Password",
+                modifier = Modifier.padding(8.dp),
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            InputField(
+                value = email,
+                onValueChange = { email = it },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Email,
+                        contentDescription = null,
+                    )
+                },
+                label = "Email",
+                modifier = Modifier.padding(8.dp),
+                keyboardOptions =
+                    KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Email,
+                    ),
+                visualTransformation = if (isLoggedIn) VisualTransformation.None else VisualTransformation.None,
+            )
+            if (!email.contains("@") && email.isNotEmpty()) {
+                Row {
+                    Icon(
+                        modifier =
+                            Modifier
+                                .size(20.dp),
+                        imageVector = Icons.Default.Warning,
+                        contentDescription = null,
+                    )
+                    Text(
+                        text = "Invalid email address",
+                        color = Color.Blue,
+                        modifier = Modifier.padding(start = 16.dp),
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                enabled = isButtonEnabled,
+                onClick = {
+                    navController.navigate(Screen.SignInScreen.route)
+                },
+                modifier =
+                    Modifier.fillMaxWidth(),
+            ) {
                 Text(
-                    text = "Invalid email address",
-                    color = Color.Blue,
-                    modifier = Modifier.padding(start = 16.dp),
+                    text = "Sign Up",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                 )
             }
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            enabled = isButtonEnabled,
-            onClick = {
-                navController.navigate(Screen.SignInScreen.route)
-            },
-            modifier =
-                Modifier.fillMaxWidth(),
-        ) {
+
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Sign Up",
-                color = MaterialTheme.colorScheme.onSurface,
-                fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+                text =
+                    buildAnnotatedString {
+                        append("Already have an account? ")
+                        withStyle(style = SpanStyle(color = Color.Blue)) {
+                            append("Login")
+                        }
+                    },
+                modifier =
+                    Modifier
+                        .clickable {
+                            // Handle login click
+                            navController.navigate(Screen.SignInScreen.route)
+                        },
             )
         }
-
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text =
-                buildAnnotatedString {
-                    append("Already have an account? ")
-                    withStyle(style = SpanStyle(color = Color.Blue)) {
-                        append("Login")
-                    }
-                },
-            modifier =
-                Modifier
-                    .clickable {
-                        // Handle login click
-                        navController.navigate(Screen.SignInScreen.route)
-                    },
-        )
     }
 }
 
@@ -146,16 +193,22 @@ fun InputField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     modifier: Modifier,
 ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(label) },
+        leadingIcon = leadingIcon,
         modifier =
             Modifier
                 .padding(5.dp)
                 .fillMaxWidth(),
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
     )
 }
 //
