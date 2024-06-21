@@ -42,8 +42,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.myapplication.data.Screen
 import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,6 +51,11 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun LogInScreen(
     navController: NavController,
+    auth: FirebaseAuth,
+    firstname: String,
+    lastname: String,
+    email: String,
+    password: String,
     onSignedIn: (FirebaseAuth) -> Unit,
 ) {
     var firstName by remember { mutableStateOf("") }
@@ -130,15 +135,34 @@ fun LogInScreen(
                     IconButton(
                         onClick = { isPasswordVisible = !isPasswordVisible },
                     ) {
+                        // Icon for password visibility
                         val icon =
                             if (isPasswordVisible) {
                                 Icons.Default.CheckCircle
                             } else {
                                 Icons.Default.Close
                             }
+                        Icon(
+                            imageVector = icon,
+                            contentDescription = null,
+                        )
                     }
                 },
             )
+
+            Spacer(modifier = Modifier.height(5.dp))
+            // Error message
+            if (errorMessage != null) {
+                Text(
+                    text = errorMessage!!,
+                    color = Color.Red,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                )
+            }
+
             Spacer(modifier = Modifier.height(8.dp))
             InputField(
                 value = email,
@@ -177,13 +201,44 @@ fun LogInScreen(
             Button(
                 enabled = isButtonEnabled,
                 onClick = {
-                    navController.navigate(Screen.SignInScreen.route)
+                    if (isLoggedIn) {
+                        SignInScreen(
+                            navController = navController,
+                            auth = auth,
+                            email = email,
+                            password = password,
+                            onSignedIn = { signedInUser ->
+                                onSignedIn(signedInUser)
+                            },
+                            onSignedInError = { myErrorMessage ->
+                                errorMessage = myErrorMessage
+                            },
+                        )
+                    } else {
+                        LogInScreen(
+                            navController = navController,
+                            auth = auth,
+                            firstname = firstName,
+                            lastname = lastName,
+                            email = email,
+                            password = password,
+                            onSignedIn = { signedInUser ->
+                                onSignedIn(
+                                    signedInUser,
+                                )
+                                // navController.navigate(Screen.HomeScreen.route)
+                            },
+                        )
+                    }
                 },
                 modifier =
-                    Modifier.fillMaxWidth(),
+                    Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth(),
             ) {
                 Text(
-                    text = "Sign Up",
+                    text = if (isLoggedIn) "Login" else "Create Account",
+                    fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onSurface,
                     fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                 )
@@ -193,20 +248,30 @@ fun LogInScreen(
             Text(
                 text =
                     buildAnnotatedString {
-                        append("Already have an account? ")
+                        // append("Already have an account? ")
                         withStyle(style = SpanStyle(color = Color.Blue)) {
-                            append("Login")
+                            append(
+                                if (isLoggedIn)"Don't have an account? SignUp" else "Already have an account? Login",
+                            )
                         }
                     },
                 modifier =
                     Modifier
                         .clickable {
                             // Handle login click
-                            navController.navigate(Screen.SignInScreen.route)
+                            errorMessage = null
+                            email = ""
+                            password = ""
+                            isLoggedIn = !isLoggedIn
+                            // navController.navigate(Screen.SignInScreen.route)
                         },
             )
         }
     }
+}
+
+private fun onLogInError(errorMessage: String) {
+    println("Sign in Error: $errorMessage")
 }
 
 @Suppress("klint:standard:function-naming", "ktlint:standard:function-naming")

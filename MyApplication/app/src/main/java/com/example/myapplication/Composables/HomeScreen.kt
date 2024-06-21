@@ -141,6 +141,12 @@ fun HomeScreen(
                         ) {
                             Text(text = "Stylists")
                         }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = { onSignOut() },
+                        ) {
+                            Text(text = "Sign Out")
+                        }
                     }
                 },
                 content = {

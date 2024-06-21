@@ -23,10 +23,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myapplication.data.Screen
+import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun SignInScreen(navController: NavController) {
+fun SignInScreen(
+    navController: NavController,
+    auth: FirebaseAuth,
+    email: String,
+    password: String,
+    onSignedIn: (FirebaseAuth) -> Unit,
+    onSignedInError: (String) -> Unit,
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isButtonEnabled = email.isNotEmpty() && password.isNotEmpty()
