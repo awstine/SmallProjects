@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -45,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
@@ -52,11 +54,7 @@ import com.google.firebase.auth.FirebaseAuth
 fun LogInScreen(
     navController: NavController,
     auth: FirebaseAuth,
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String,
-    onSignedIn: (FirebaseAuth) -> Unit,
+    onSignedIn: (FirebaseUser?) -> Unit,
 ) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
@@ -65,8 +63,7 @@ fun LogInScreen(
     var isLoading by remember { mutableStateOf(false) }
     var isLoggedIn by remember { mutableStateOf(false) }
     var isPasswordVisible by remember { mutableStateOf(false) }
-    val isButtonEnabled = firstName.isNotEmpty() && lastName.isNotEmpty()
-    email.isNotEmpty() && password.isNotEmpty()
+    val isButtonEnabled = firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()
 
     // Error message
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -81,7 +78,7 @@ fun LogInScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Create Account",
+            text = if (isLoggedIn) "Sign In" else "Create Account",
             style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier.padding(8.dp),
             color = MaterialTheme.colorScheme.onTertiary,
@@ -114,128 +111,118 @@ fun LogInScreen(
                 modifier = Modifier.padding(8.dp),
             )
             Spacer(modifier = Modifier.height(4.dp))
-            InputField(
-                value = password,
-                onValueChange = { password = it },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Lock,
-                        contentDescription = null,
-                    )
-                },
-                keyboardOptions =
-                    KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password,
-                    ),
-                label = "Password",
-                modifier = Modifier.padding(8.dp),
-                // isPasswordVisible = isPasswordVisible,
-                visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    IconButton(
-                        onClick = { isPasswordVisible = !isPasswordVisible },
-                    ) {
-                        // Icon for password visibility
-                        val icon =
-                            if (isPasswordVisible) {
-                                Icons.Default.CheckCircle
-                            } else {
-                                Icons.Default.Close
-                            }
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                        )
-                    }
-                },
-            )
-
-            Spacer(modifier = Modifier.height(5.dp))
-            // Error message
-            if (errorMessage != null) {
+        }
+        InputField(
+            value = email,
+            onValueChange = { email = it },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = null,
+                )
+            },
+            label = "Email",
+            modifier = Modifier.padding(8.dp),
+            keyboardOptions =
+                KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Email,
+                ),
+        )
+        if (!email.contains("@") && email.isNotEmpty()) {
+            Row {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    imageVector = Icons.Default.Warning,
+                    contentDescription = null,
+                )
                 Text(
-                    text = errorMessage!!,
+                    text = "Invalid email address",
                     color = Color.Red,
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
+                    modifier = Modifier.padding(start = 16.dp),
                 )
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            InputField(
-                value = email,
-                onValueChange = { email = it },
-                leadingIcon = {
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        InputField(
+            value = password,
+            onValueChange = { password = it },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = null,
+                )
+            },
+            keyboardOptions =
+                KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Password,
+                ),
+            label = "Password",
+            modifier = Modifier.padding(8.dp),
+            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(
+                    onClick = { isPasswordVisible = !isPasswordVisible },
+                ) {
+                    val icon =
+                        if (isPasswordVisible) {
+                            Icons.Default.CheckCircle
+                        } else {
+                            Icons.Default.Close
+                        }
                     Icon(
-                        imageVector = Icons.Default.Email,
+                        imageVector = icon,
                         contentDescription = null,
-                    )
-                },
-                label = "Email",
-                modifier = Modifier.padding(8.dp),
-                keyboardOptions =
-                    KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Email,
-                    ),
-                visualTransformation = if (isLoggedIn) VisualTransformation.None else VisualTransformation.None,
-            )
-            if (!email.contains("@") && email.isNotEmpty()) {
-                Row {
-                    Icon(
-                        modifier =
-                            Modifier
-                                .size(20.dp),
-                        imageVector = Icons.Default.Warning,
-                        contentDescription = null,
-                    )
-                    Text(
-                        text = "Invalid email address",
-                        color = Color.Blue,
-                        modifier = Modifier.padding(start = 16.dp),
                     )
                 }
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(
-                enabled = isButtonEnabled,
-                onClick = {
-                    if (isLoggedIn) {
-                        SignInScreen(
-                            navController = navController,
-                            auth = auth,
-                            email = email,
-                            password = password,
-                            onSignedIn = { signedInUser ->
-                                onSignedIn(signedInUser)
-                            },
-                            onSignedInError = { myErrorMessage ->
-                                errorMessage = myErrorMessage
-                            },
-                        )
-                    } else {
-                        LogInScreen(
-                            navController = navController,
-                            auth = auth,
-                            firstname = firstName,
-                            lastname = lastName,
-                            email = email,
-                            password = password,
-                            onSignedIn = { signedInUser ->
-                                onSignedIn(
-                                    signedInUser,
-                                )
-                                // navController.navigate(Screen.HomeScreen.route)
-                            },
-                        )
-                    }
-                },
+            },
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage!!,
+                color = Color.Red,
                 modifier =
                     Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth(),
-            ) {
+                        .fillMaxWidth()
+                        .padding(8.dp),
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            enabled = isButtonEnabled,
+            onClick = {
+                isLoading = true
+                if (isLoggedIn) {
+                    auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            isLoading = false
+                            if (task.isSuccessful) {
+                                onSignedIn(auth.currentUser)
+                            } else {
+                                errorMessage = task.exception?.message
+                            }
+                        }
+                } else {
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            isLoading = false
+                            if (task.isSuccessful) {
+                                onSignedIn(auth.currentUser)
+                            } else {
+                                errorMessage = task.exception?.message
+                            }
+                        }
+                }
+            },
+            modifier =
+                Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth(),
+        ) {
+            if (isLoading) {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.onSurface)
+            } else {
                 Text(
                     text = if (isLoggedIn) "Login" else "Create Account",
                     fontSize = 18.sp,
@@ -243,30 +230,24 @@ fun LogInScreen(
                     fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                 )
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text =
-                    buildAnnotatedString {
-                        // append("Already have an account? ")
-                        withStyle(style = SpanStyle(color = Color.Blue)) {
-                            append(
-                                if (isLoggedIn)"Don't have an account? SignUp" else "Already have an account? Login",
-                            )
-                        }
-                    },
-                modifier =
-                    Modifier
-                        .clickable {
-                            // Handle login click
-                            errorMessage = null
-                            email = ""
-                            password = ""
-                            isLoggedIn = !isLoggedIn
-                            // navController.navigate(Screen.SignInScreen.route)
-                        },
-            )
         }
+
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text =
+                buildAnnotatedString {
+                    withStyle(style = SpanStyle(color = Color.Blue)) {
+                        append(
+                            if (isLoggedIn) "Don't have an account? Sign Up" else "Already have an account? Login",
+                        )
+                    }
+                },
+            modifier =
+                Modifier.clickable {
+                    errorMessage = null
+                    isLoggedIn = !isLoggedIn
+                },
+        )
     }
 }
 
