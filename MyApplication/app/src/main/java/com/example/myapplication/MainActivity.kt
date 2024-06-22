@@ -39,13 +39,25 @@ class MainActivity : ComponentActivity() {
                         GetStartedScreen(navController)
                     }
                     composable(route = Screen.LogInScreen.route) {
-                        LogInScreen(navController, onSignedIn = {})
+                        LogInScreen(navController, auth = auth, onSignedIn = { user ->
+                            if (user != null) {
+                                navController.navigate(Screen.HomeScreen.route) {
+                                    popUpTo(Screen.LogInScreen.route) { inclusive = true }
+                                }
+                            }
+                        })
                     }
                     composable(route = Screen.HomeScreen.route) {
                         HomeScreen(navController, onNavigationIconClick = {}, auth = auth)
                     }
                     composable(route = Screen.SignInScreen.route) {
-                        SignInScreen(navController)
+                        SignInScreen(navController, auth = auth, onSignedIn = { user ->
+                            if (user != null) {
+                                navController.navigate(Screen.HomeScreen.route) {
+                                    popUpTo(Screen.SignInScreen.route) { inclusive = true }
+                                }
+                            }
+                        })
                     }
                     composable(route = Screen.FavouriteScreen.route) {
                         FavouriteScreen(navController = navController)
