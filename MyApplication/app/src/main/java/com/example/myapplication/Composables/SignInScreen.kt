@@ -24,16 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myapplication.data.Screen
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
 fun SignInScreen(
     navController: NavController,
     auth: FirebaseAuth,
-    email: String,
-    password: String,
-    onSignedIn: (FirebaseAuth) -> Unit,
-    onSignedInError: (String) -> Unit,
+    onSignedIn: (FirebaseUser?) -> Unit,
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
