@@ -190,7 +190,6 @@ fun LogInScreen(
         }
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            enabled = isButtonEnabled,
             onClick = {
                 isLoading = true
                 if (isLoggedIn) {
@@ -215,6 +214,7 @@ fun LogInScreen(
                         }
                 }
             },
+            enabled = isButtonEnabled,
             modifier =
                 Modifier
                     .padding(8.dp)
