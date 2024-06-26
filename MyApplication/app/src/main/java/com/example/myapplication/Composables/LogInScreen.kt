@@ -231,7 +231,6 @@ fun LogInScreen(
                 )
             }
         }
-
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text =
