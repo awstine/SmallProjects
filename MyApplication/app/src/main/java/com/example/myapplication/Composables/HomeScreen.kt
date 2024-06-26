@@ -3,6 +3,7 @@
 package com.example.myapplication.Composables
 
 import android.util.Log
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,6 +35,7 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
@@ -57,6 +59,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.myapplication.data.Screen
 import com.example.myapplication.data.hairList
@@ -258,14 +261,22 @@ fun MainContent(paddingValues: PaddingValues) {
                             contentDescription = null,
                             modifier = Modifier,
                         )
-                        Text(
-                            text = hair.hairName,
-                            modifier = Modifier.padding(8.dp),
-                        )
-                        Text(
-                            text = "$${hair.hairPrice}",
-                            modifier = Modifier.padding(8.dp),
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = hair.hairName,
+                                modifier = Modifier.padding(8.dp),
+                            )
+                            FavouriteButton()
+                        }
+
+//                        Text(
+//                            text = "$${hair.hairPrice}",
+//                            modifier = Modifier.padding(8.dp),
+//                        )
                     }
                 }
             }
@@ -368,6 +379,31 @@ fun MainContent(paddingValues: PaddingValues) {
         }
     }
 }
+
+@Suppress("ktlint:standard:function-naming")
+@Composable
+fun FavouriteButton() {
+    var checked by remember { mutableStateOf(false) }
+    IconToggleButton(
+        checked = checked,
+        onCheckedChange = { checked = it },
+    ) {
+        val tint by animateColorAsState(
+            if (checked) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            },
+        )
+        Icon(
+            imageVector = Icons.Filled.Favorite,
+            contentDescription = null,
+            tint = tint,
+        )
+    }
+}
+
+// viewModel
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
