@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.google.gms.google.services)
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
 }
 
 android {
@@ -81,8 +82,13 @@ dependencies {
 
     // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
-    // Declare the dependencies for the desired Firebase products without specifying versions
-    // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
     implementation(libs.google.firebase.auth)
     implementation(libs.firebase.firestore)
+
+    @Suppress("ktlint:standard:property-naming")
+    val room_version = "2.5.1"
+
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
