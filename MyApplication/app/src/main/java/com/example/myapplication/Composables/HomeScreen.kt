@@ -59,12 +59,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.myapplication.data.Hair
 import com.example.myapplication.data.Screen
 import com.example.myapplication.data.hairList
 import com.example.myapplication.data.menHair
 import com.example.myapplication.data.womenHair
+import com.example.myapplication.viewModel.FavouritesViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
@@ -75,6 +77,7 @@ fun HomeScreen(
     navController: NavController,
     onNavigationIconClick: () -> Unit,
     auth: FirebaseAuth,
+    favoritesViewModel: FavouritesViewModel = viewModel(),
 ) {
     var user by remember { mutableStateOf(auth.currentUser) }
 
@@ -144,7 +147,7 @@ fun HomeScreen(
                             )
                         },
                     ) { paddingValues ->
-                        MainContent(paddingValues)
+                        MainContent(paddingValues, favoritesViewModel)
                     }
                 },
             )
@@ -215,7 +218,10 @@ fun DrawerContent(
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun MainContent(paddingValues: PaddingValues) {
+fun MainContent(
+    paddingValues: PaddingValues,
+    favouritesViewModel: FavouritesViewModel,
+) {
     Column(
         modifier =
             Modifier
@@ -262,7 +268,9 @@ fun MainContent(paddingValues: PaddingValues) {
                             modifier = Modifier,
                         )
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier =
+                                Modifier.fillMaxWidth()
+                                    .padding(8.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
@@ -270,7 +278,7 @@ fun MainContent(paddingValues: PaddingValues) {
                                 text = hair.hairName,
                                 modifier = Modifier.padding(8.dp),
                             )
-                            FavouriteButton()
+                            FavouriteButton(hair, favouritesViewModel)
                         }
 
 //                        Text(
@@ -382,11 +390,21 @@ fun MainContent(paddingValues: PaddingValues) {
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun FavouriteButton() {
-    var checked by remember { mutableStateOf(false) }
+fun FavouriteButton(
+    hair: Hair,
+    favouritesViewModel: FavouritesViewModel = viewModel(),
+) {
+    var checked by remember { mutableStateOf(favouritesViewModel.favourites.contains(hair)) }
     IconToggleButton(
         checked = checked,
-        onCheckedChange = { checked = it },
+        onCheckedChange = {
+            checked = it
+            if (checked) {
+                favouritesViewModel.addFavourite(hair)
+            } else {
+                favouritesViewModel.removeFavourite(hair)
+            }
+        },
     ) {
         val tint by animateColorAsState(
             if (checked) {
