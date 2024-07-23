@@ -1,0 +1,563 @@
+version 2
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 280 ciObject found
+instanceKlass java/util/regex/Pattern
+ciInstanceKlass java/lang/Cloneable 1 0 7 100 1 100 1 1 1
+instanceKlass org/gradle/kotlin/dsl/support/KotlinCompilerOptions
+instanceKlass org/gradle/kotlin/dsl/support/KotlinCompilerOptionsKt
+instanceKlass org/gradle/kotlin/dsl/provider/StandardKotlinScriptEvaluator$InterpreterHost
+instanceKlass org/gradle/kotlin/dsl/execution/Interpreter$Host
+instanceKlass org/gradle/kotlin/dsl/execution/Interpreter
+instanceKlass org/gradle/kotlin/dsl/execution/EvalOptionKt
+instanceKlass org/gradle/kotlin/dsl/provider/KotlinDslProviderModeKt
+instanceKlass org/gradle/kotlin/dsl/provider/KotlinScriptPluginKt
+# instanceKlass org/gradle/tooling/internal/provider/runner/PluginApplicationTracker$$Lambda$472+0x0000000801515980
+instanceKlass org/gradle/util/internal/TextUtil$1
+instanceKlass  @bci java/util/regex/CharPredicates range (II)Ljava/util/regex/Pattern$CharPredicate; 2 <appendix> member <vmtarget> ; # java/util/regex/CharPredicates$$Lambda$471+0x0000000801542ad0
+instanceKlass  @bci java/util/regex/CharPredicates ASCII_SPACE ()Ljava/util/regex/Pattern$BmpCharPredicate; 0 <appendix> argL0 ; # java/util/regex/CharPredicates$$Lambda$19+0x800000027
+instanceKlass org/gradle/util/internal/TextUtil
+instanceKlass org/gradle/configuration/BuildOperationScriptPlugin$OperationDetails
+instanceKlass org/gradle/configuration/BuildOperationScriptPlugin$1
+instanceKlass org/gradle/internal/code/DefaultUserCodeApplicationContext$CurrentApplication
+instanceKlass org/gradle/internal/code/UserCodeApplicationContext$Application
+# instanceKlass org/gradle/configuration/BuildOperationScriptPlugin$$Lambda$469+0x000000080151f008
+instanceKlass org/gradle/internal/code/UserCodeApplicationId
+instanceKlass org/gradle/internal/code/DefaultUserCodeSource
+instanceKlass org/gradle/configuration/BuildOperationScriptPlugin$2
+instanceKlass org/gradle/internal/code/UserCodeSource
+instanceKlass org/gradle/configuration/ApplyScriptPluginBuildOperationType$Result
+instanceKlass org/gradle/configuration/BuildOperationScriptPlugin
+instanceKlass kotlin/jvm/functions/Function1
+instanceKlass org/gradle/kotlin/dsl/provider/KotlinScriptPlugin
+instanceKlass org/gradle/kotlin/dsl/provider/StandardKotlinScriptEvaluator
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801525c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801525800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801525400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801525000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801524c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801524800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801524400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801524000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801523c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801523800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801523400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801523000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801522c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801522800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801522400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801522000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801521c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801521800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801521400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801521000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801520c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801520800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801520400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801520000
+# instanceKlass java/lang/invoke/LambdaForm$BMH+0x000000080151bc00
+# instanceKlass java/lang/invoke/LambdaForm$DMH+0x000000080151b800
+instanceKlass org/gradle/kotlin/dsl/cache/KotlinDslWorkspaceProvider$subWorkspace$1
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151b400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151b000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151ac00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151a800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151a400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080151a000
+instanceKlass org/gradle/kotlin/dsl/normalization/CompileAvoidanceExceptionReporter
+instanceKlass org/gradle/kotlin/dsl/normalization/KotlinApiClassExtractor$1
+instanceKlass kotlin/collections/EmptySet
+instanceKlass kotlin/jvm/internal/markers/KMappedMarker
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801519c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801519800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801519400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801519000
+instanceKlass org/gradle/groovy/scripts/internal/DefaultScriptSourceHasher
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801518c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801518800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801518400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801518000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801513c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801513800
+instanceKlass org/gradle/kotlin/dsl/provider/ClassLoaderClassPathCache
+instanceKlass kotlin/UNINITIALIZED_VALUE
+instanceKlass kotlin/SynchronizedLazyImpl
+instanceKlass kotlin/Lazy
+instanceKlass kotlin/LazyKt__LazyJVMKt
+instanceKlass kotlin/jvm/internal/Lambda
+instanceKlass kotlin/jvm/internal/FunctionBase
+instanceKlass org/gradle/kotlin/dsl/provider/KotlinScriptClassPathProviderKt
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801513400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801513000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801512c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801512800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801512400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801512000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801511c00
+instanceKlass org/gradle/api/artifacts/ClientModule
+instanceKlass org/gradle/api/internal/notations/ClientModuleNotationParserFactory
+instanceKlass org/gradle/api/internal/notations/DependencyConstraintProjectNotationConverter
+instanceKlass org/gradle/api/internal/artifacts/dependencies/DefaultDependencyConstraint
+instanceKlass org/gradle/api/internal/artifacts/dependencies/DependencyConstraintInternal
+instanceKlass org/gradle/api/artifacts/ModuleDependencyCapabilitiesHandler
+instanceKlass org/gradle/api/internal/notations/DependencyConstraintNotationParser$MinimalExternalDependencyNotationConverter
+instanceKlass org/gradle/api/artifacts/DependencyConstraint
+instanceKlass org/gradle/api/internal/notations/DependencyConstraintNotationParser
+instanceKlass org/gradle/internal/typeconversion/TypeFilteringNotationConverter
+instanceKlass org/gradle/api/internal/file/collections/MinimalFileSet
+instanceKlass org/gradle/api/internal/notations/DependencyClassPathNotationConverter
+instanceKlass org/gradle/api/internal/notations/DependencyProjectNotationConverter
+instanceKlass org/gradle/api/internal/notations/DependencyFilesNotationConverter
+instanceKlass org/gradle/api/internal/artifacts/dependencies/MinimalExternalModuleDependencyInternal
+instanceKlass org/gradle/api/artifacts/MinimalExternalModuleDependency
+instanceKlass org/gradle/api/internal/notations/DependencyNotationParser$MinimalExternalDependencyNotationConverter
+instanceKlass org/gradle/api/internal/artifacts/dependencies/AbstractDependency
+instanceKlass org/gradle/api/internal/artifacts/ResolvableDependency
+instanceKlass org/gradle/api/internal/notations/DependencyNotationParser
+instanceKlass org/gradle/api/internal/artifacts/DefaultDependencyFactory
+instanceKlass org/gradle/api/internal/notations/ProjectDependencyFactory
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801511800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801511400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801511000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801510c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801510800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801510400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801510000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150fc00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150f800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150f400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150f000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150ec00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150e800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150e400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150e000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150dc00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150d800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150d400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150d000
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150cc00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150c800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150c400
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x000000080150c000
+instanceKlass org/gradle/api/internal/DependencyClassPathProvider
+instanceKlass org/gradle/internal/instantiation/generator/AsmBackedClassGenerator$NoOpBuilder
+instanceKlass org/gradle/kotlin/dsl/provider/KotlinScriptPluginFactory
+instanceKlass sun/nio/fs/WindowsPath$1
+instanceKlass org/gradle/api/internal/cache/CacheDirUtil
+instanceKlass  @bci org/gradle/api/internal/provider/AbstractProperty beforeRead (Lorg/gradle/api/internal/provider/EvaluationContext$ScopeContext;Lorg/gradle/internal/state/ModelObject;Lorg/gradle/api/internal/provider/ValueSupplier$ValueConsumer;)V 12 <appendix> member <vmtarget> ; # org/gradle/api/internal/provider/AbstractProperty$$Lambda$468+0x0000000801501678
+instanceKlass org/gradle/cache/CleanupFrequency$3
+instanceKlass org/gradle/cache/CleanupFrequency$2
+instanceKlass org/gradle/cache/CleanupFrequency$1
+instanceKlass org/gradle/api/internal/cache/DefaultCleanup
+instanceKlass org/gradle/api/internal/cache/CleanupInternal
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceArrayList <clinit> ()V 26 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceArrayList$$Lambda$467+0x0000000801503400
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceArrayList <clinit> ()V 21 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceArrayList$$Lambda$466+0x00000008015031e0
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceArrayList <clinit> ()V 16 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceArrayList$$Lambda$465+0x0000000801502fd0
+instanceKlass it/unimi/dsi/fastutil/objects/ObjectListIterator
+instanceKlass it/unimi/dsi/fastutil/objects/ObjectBidirectionalIterator
+instanceKlass it/unimi/dsi/fastutil/BidirectionalIterator
+instanceKlass it/unimi/dsi/fastutil/Stack
+instanceKlass it/unimi/dsi/fastutil/objects/ReferenceList
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet <clinit> ()V 10 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet$$Lambda$464+0x0000000801507390
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet <clinit> ()V 5 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet$$Lambda$463+0x0000000801507170
+instanceKlass  @bci it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet <clinit> ()V 0 <appendix> argL0 ; # it/unimi/dsi/fastutil/objects/ReferenceOpenHashSet$$Lambda$462+0x0000000801506f60
+instanceKlass it/unimi/dsi/fastutil/objects/ObjectSpliterator
+instanceKlass it/unimi/dsi/fastutil/objects/ObjectIterator
+instanceKlass it/unimi/dsi/fastutil/objects/ReferenceSet
+instanceKlass it/unimi/dsi/fastutil/objects/ReferenceCollection
+instanceKlass  @bci org/gradle/api/internal/provider/EvaluationContext <init> ()V 6 <appendix> member <vmtarget> ; # org/gradle/api/internal/provider/EvaluationContext$$Lambda$461+0x0000000801505420
+instanceKlass org/gradle/api/internal/provider/EvaluationContext$PerThreadContext
+instanceKlass org/gradle/api/internal/provider/EvaluationContext$ScopeContext
+instanceKlass org/gradle/api/internal/provider/EvaluationContext
+instanceKlass  @bci org/gradle/api/internal/cache/DefaultCacheConfigurations$ContextualErrorMessageProperty set (Lorg/gradle/api/provider/Provider;)V 3 <appendix> member <vmtarget> ; # org/gradle/api/internal/cache/DefaultCacheConfigurations$ContextualErrorMessageProperty$$Lambda$460+0x0000000801504be0
+instanceKlass  @bci org/gradle/api/internal/cache/DefaultCacheConfigurations$ContextualErrorMessageProperty value (Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/internal/cache/DefaultCacheConfigurations$ContextualErrorMessageProperty; 3 <appendix> member <vmtarget> ; # org/gradle/api/internal/cache/DefaultCacheConfigurations$ContextualErrorMessageProperty$$Lambda$459+0x00000008015049c8
+instanceKlass org/gradle/internal/event/BroadcastDispatch$ActionInvocationHandler
+instanceKlass  @bci org/gradle/internal/operations/notify/BuildOperationNotificationBridge$2 beforeSettings (Lorg/gradle/api/initialization/Settings;)V 21 <appendix> member <vmtarget> ; # org/gradle/internal/operations/notify/BuildOperationNotificationBridge$2$$Lambda$458+0x0000000801504578
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801500c00
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801500800
+# instanceKlass java/lang/invoke/LambdaForm$MH+0x0000000801500400
+instanceKlass org/gradle/internal/extensibility/ExtensionsStorage$ExtensionHolder
+instanceKlass org/gradle/api/plugins/ExtensionsSchema$ExtensionSchema
+instanceKlass org/gradle/api/NamedDomainObjectCollectionSchema$NamedDomainObjectSchema
+instanceKlass  @bci org/codehaus/groovy/runtime/memoize/StampedCommonCache clearAll ()Ljava/util/Map; 1 <appendix> argL0 ; # org/codehaus/groovy/runtime/memoize/StampedCommonCache$$Lambda$457+0x00000008014bb9d0
+instanceKlass org/codehaus/groovy/runtime/memoize/EvictableCache$Action
+instanceKlass java/util/WeakHashMap$HashIterator
+instanceKlass  @bci java/util/stream/StreamSpliterators$WrappingSpliterator initPartialTraversalState ()V 37 <appendix> member <vmtarget> ; # java/util/stream/StreamSpliterators$WrappingSpliterator$$Lambda$456+0x0000000801541160
+instanceKlass java/util/function/BooleanSupplier
+instanceKlass  @bci java/util/stream/StreamSpliterators$WrappingSpliterator initPartialTraversalState ()V 24 <appendix> member <vmtarget> ; # java/util/stream/StreamSpliterators$WrappingSpliterator$$Lambda$455+0x0000000801540cd0
+instanceKlass jdk/internal/jrtfs/JrtDirectoryStream$1
+instanceKlass  @bci jdk/internal/jrtfs/JrtFileSystem iteratorOf (Ljdk/internal/jrtfs/JrtPath;Ljava/nio/file/DirectoryStream$Filter;)Ljava/util/Iterator; 82 <appendix> member <vmtarget> ; # jdk/internal/jrtfs/JrtFileSystem$$Lambda$454+0x0000000801540830
+instanceKlass  @bci jdk/internal/jrtfs/JrtFileSystem iteratorOf (Ljdk/internal/jrtfs/JrtPath;Ljava/nio/file/DirectoryStream$Filter;)Ljava/util/Iterator; 71 <appendix> member <vmtarget> ; # jdk/internal/jrtfs/JrtFileSystem$$Lambda$453+0x00000008015405f8
+instanceKlass jdk/internal/jrtfs/JrtDirectoryStream
+instanceKlass jdk/internal/jrtfs/JrtFileAttributes
+instanceKlass  @bci jdk/internal/jimage/ImageReader$SharedImageReader handleModulesSubTree (Ljava/lang/String;Ljdk/internal/jimage/ImageLocation;)Ljdk/internal/jimage/ImageReader$Node; 37 <appendix> member <vmtarget> ; # jdk/internal/jimage/ImageReader$SharedImageReader$$Lambda$452+0x00000008014ffaa0
+instanceKlass jdk/internal/jimage/ImageReader$SharedImageReader$LocationVisitor
+instanceKlass jdk/internal/jimage/ImageReader$Node
+instanceKlass jdk/internal/jrtfs/SystemImage$2
+instanceKlass  @bci jdk/internal/jrtfs/SystemImage <clinit> ()V 0 <appendix> argL0 ; # jdk/internal/jrtfs/SystemImage$$Lambda$451+0x00000008014feb68
+instanceKlass jdk/internal/jrtfs/SystemImage
+instanceKlass jdk/internal/jrtfs/JrtPath
+instanceKlass groovy/grape/GrapeIvy
+instanceKlass groovy/grape/GrapeEngine
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$doFindClasses$3 (Ljava/util/List;Ljava/util/Map$Entry;)Ljava/util/Set; 25 <appendix> argL0 ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$450+0x00000008014bb008
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$doFindClasses$3 (Ljava/util/List;Ljava/util/Map$Entry;)Ljava/util/Set; 15 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$449+0x00000008014badc0
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$doFindClasses$0 (Ljava/util/List;Ljava/util/Map$Entry;)Z 20 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$448+0x00000008014bab78
+instanceKlass  @bci java/util/stream/Collectors uniqKeysMapMerger ()Ljava/util/function/BinaryOperator; 0 <appendix> argL0 ; # java/util/stream/Collectors$$Lambda$447+0x00000008014fe0c0
+instanceKlass  @bci java/util/stream/Collectors uniqKeysMapAccumulator (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/function/BiConsumer; 2 <appendix> member <vmtarget> ; # java/util/stream/Collectors$$Lambda$446+0x00000008014fde98
+instanceKlass  @bci java/util/stream/Collectors toMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector; 4 <appendix> argL0 ; # java/util/stream/Collectors$$Lambda$445+0x00000008014fdc88
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 doFindClasses (Ljava/net/URI;Ljava/lang/String;Ljava/util/List;)Ljava/util/Map; 33 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$444+0x00000008014ba940
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 doFindClasses (Ljava/net/URI;Ljava/lang/String;Ljava/util/List;)Ljava/util/Map; 27 <appendix> argL0 ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$443+0x00000008014ba710
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 doFindClasses (Ljava/net/URI;Ljava/lang/String;Ljava/util/List;)Ljava/util/Map; 17 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$442+0x00000008014ba4c8
+instanceKlass  @bci jdk/nio/zipfs/ZipFileSystemProvider removeFileSystem (Ljava/nio/file/Path;Ljdk/nio/zipfs/ZipFileSystem;)V 17 <appendix> member <vmtarget> ; # jdk/nio/zipfs/ZipFileSystemProvider$$Lambda$441+0x00000008014bde58
+instanceKlass  @bci jdk/nio/zipfs/ZipFileSystem close ()V 97 <appendix> member <vmtarget> ; # jdk/nio/zipfs/ZipFileSystem$$Lambda$440+0x00000008014bdc40
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/ClassFinder$1 visitFile (Ljava/nio/file/Path;Ljava/nio/file/attribute/BasicFileAttributes;)Ljava/nio/file/FileVisitResult; 153 <appendix> argL0 ; # org/codehaus/groovy/vmplugin/v9/ClassFinder$1$$Lambda$439+0x00000008014ba298
+instanceKlass java/nio/file/Files$3
+instanceKlass java/nio/file/FileTreeWalker$Event
+instanceKlass jdk/nio/zipfs/ZipDirectoryStream$1
+instanceKlass java/nio/file/FileTreeWalker$DirectoryNode
+instanceKlass jdk/nio/zipfs/ZipDirectoryStream
+instanceKlass java/time/zone/ZoneOffsetTransitionRule$1
+instanceKlass java/time/chrono/AbstractChronology
+instanceKlass java/time/LocalDate$1
+instanceKlass  @bci java/time/temporal/TemporalAdjusters nextOrSame (Ljava/time/DayOfWeek;)Ljava/time/temporal/TemporalAdjuster; 6 <appendix> member <vmtarget> ; # java/time/temporal/TemporalAdjusters$$Lambda$438+0x00000008014fc558
+instanceKlass  @cpi java/time/temporal/TemporalAdjusters 216 form vmentry <vmtarget> ; # java/lang/invoke/LambdaForm$DMH+0x0000000801500000
+instanceKlass java/time/temporal/TemporalAdjusters
+instanceKlass java/time/zone/ZoneOffsetTransition
+instanceKlass  @bci java/time/ZoneOffset ofTotalSeconds (I)Ljava/time/ZoneOffset; 37 <appendix> argL0 ; # java/time/ZoneOffset$$Lambda$9+0x80000000e
+instanceKlass java/time/zone/ZoneOffsetTransitionRule
+instanceKlass java/time/zone/Ser
+instanceKlass java/io/Externalizable
+instanceKlass java/time/zone/ZoneRulesProvider$1
+instanceKlass java/time/zone/ZoneRulesProvider
+instanceKlass jdk/nio/zipfs/ZipUtils
+instanceKlass java/nio/file/FileTreeWalker
+instanceKlass java/nio/file/SimpleFileVisitor
+instanceKlass jdk/nio/zipfs/ZipFileSystem$END
+instanceKlass jdk/nio/zipfs/ZipConstants
+instanceKlass sun/nio/fs/WindowsChannelFactory$2
+instanceKlass sun/nio/fs/WindowsSecurityDescriptor
+instanceKlass java/nio/file/attribute/PosixFileAttributeView
+instanceKlass jdk/nio/zipfs/ZipFileAttributeView
+instanceKlass jdk/nio/zipfs/ZipPath
+instanceKlass jdk/nio/zipfs/ZipCoder
+instanceKlass sun/nio/fs/WindowsSecurity
+instanceKlass sun/nio/fs/AbstractAclFileAttributeView
+instanceKlass java/nio/file/attribute/AclFileAttributeView
+instanceKlass java/nio/file/attribute/FileOwnerAttributeView
+instanceKlass  @bci jdk/nio/zipfs/ZipFileSystem <init> (Ljdk/nio/zipfs/ZipFileSystemProvider;Ljava/nio/file/Path;Ljava/util/Map;)V 431 <appendix> member <vmtarget> ; # jdk/nio/zipfs/ZipFileSystem$$Lambda$436+0x00000008014a3de0
+instanceKlass sun/nio/ch/FileChannelImpl$Closer
+instanceKlass sun/nio/fs/WindowsChannelFactory$Flags
+instanceKlass sun/nio/fs/WindowsChannelFactory$1
+instanceKlass sun/nio/fs/WindowsChannelFactory
+instanceKlass sun/nio/fs/WindowsFileSystemProvider$1
+instanceKlass  @bci jdk/nio/zipfs/ZipFileSystem <clinit> ()V 0 <appendix> argL0 ; # jdk/nio/zipfs/ZipFileSystem$$Lambda$435+0x00000008014a3bd0
+instanceKlass java/nio/file/attribute/PosixFileAttributes
+instanceKlass jdk/nio/zipfs/ZipFileAttributes
+instanceKlass jdk/nio/zipfs/ZipFileSystem$IndexNode
+instanceKlass sun/nio/fs/WindowsLinkSupport
+instanceKlass java/util/AbstractMap$SimpleEntry
+instanceKlass jdk/internal/jimage/ImageBufferCache$2
+instanceKlass jdk/internal/jimage/ImageBufferCache
+instanceKlass  @bci sun/net/www/protocol/jrt/JavaRuntimeURLConnection <clinit> ()V 0 <appendix> argL0 ; # sun/net/www/protocol/jrt/JavaRuntimeURLConnection$$Lambda$434+0x00000008014f4c48
+instanceKlass java/nio/channels/AsynchronousFileChannel
+instanceKlass java/nio/channels/AsynchronousChannel
+instanceKlass java/nio/file/FileStore
+instanceKlass java/nio/file/spi/FileSystemProvider$1
+instanceKlass sun/nio/fs/WindowsUriSupport
+instanceKlass org/codehaus/groovy/vmplugin/v9/ClassFinder
+instanceKlass org/apache/groovy/util/Maps
+instanceKlass org/codehaus/groovy/GroovyExceptionInterface
+instanceKlass groovy/lang/GroovyClassLoader$1
+instanceKlass org/codehaus/groovy/runtime/memoize/CommonCache
+instanceKlass java/util/concurrent/locks/StampedLock
+instanceKlass org/codehaus/groovy/runtime/memoize/StampedCommonCache
+instanceKlass org/codehaus/groovy/runtime/memoize/ValueConvertable
+instanceKlass org/codehaus/groovy/control/CompilationUnit$IPrimaryClassNodeOperation
+instanceKlass org/codehaus/groovy/control/CompilationUnit$PhaseOperation
+instanceKlass org/codehaus/groovy/control/CompilationUnit$ClassgenCallback
+instanceKlass org/codehaus/groovy/runtime/memoize/UnlimitedConcurrentCache
+instanceKlass org/codehaus/groovy/runtime/memoize/EvictableCache
+instanceKlass org/codehaus/groovy/ast/expr/MethodCall
+instanceKlass org/codehaus/groovy/ast/stmt/LoopingStatement
+instanceKlass org/codehaus/groovy/control/messages/Message
+instanceKlass org/codehaus/groovy/ast/CodeVisitorSupport
+instanceKlass org/codehaus/groovy/ast/GroovyCodeVisitor
+instanceKlass org/codehaus/groovy/ast/GroovyClassVisitor
+instanceKlass org/codehaus/groovy/transform/ErrorCollecting
+instanceKlass org/codehaus/groovy/ast/expr/ExpressionTransformer
+instanceKlass java/util/concurrent/locks/ReentrantReadWriteLock$WriteLock
+instanceKlass java/util/concurrent/locks/ReentrantReadWriteLock$ReadLock
+instanceKlass org/apache/groovy/plugin/GroovyRunnerRegistry
+instanceKlass  @bci org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl <init> (IZ)V 318 <appendix> member <vmtarget> ; # org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$$Lambda$433+0x00000008014aa510
+instanceKlass  @bci groovy/lang/MetaClassImpl getPropName (Ljava/lang/String;)Ljava/lang/String; 5 <appendix> member <vmtarget> ; # groovy/lang/MetaClassImpl$$Lambda$432+0x00000008014aa0a0
+instanceKlass org/codehaus/groovy/runtime/GroovyCategorySupport
+instanceKlass java/util/concurrent/locks/ReentrantReadWriteLock
+instanceKlass java/util/concurrent/locks/ReadWriteLock
+instanceKlass org/codehaus/groovy/util/ComplexKeyHashMap$1
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$1 lambda$initValue$2 ()[Lorg/codehaus/groovy/reflection/CachedField; 33 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$1$$Lambda$431+0x00000008014a97f0
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$1 lambda$initValue$2 ()[Lorg/codehaus/groovy/reflection/CachedField; 23 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$1$$Lambda$430+0x00000008014a95c0
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$1 lambda$initValue$2 ()[Lorg/codehaus/groovy/reflection/CachedField; 13 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$1$$Lambda$429+0x00000008014a9380
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$1 initValue ()[Lorg/codehaus/groovy/reflection/CachedField; 1 <appendix> member <vmtarget> ; # org/codehaus/groovy/reflection/CachedClass$1$$Lambda$428+0x00000008014a9168
+instanceKlass java/beans/SimpleBeanInfo
+instanceKlass java/beans/Transient
+instanceKlass java/beans/BeanProperty
+instanceKlass  @bci com/sun/beans/introspect/PropertyInfo get (Ljava/lang/Class;)Ljava/util/Map; 440 <appendix> argL0 ; # com/sun/beans/introspect/PropertyInfo$$Lambda$427+0x00000008014f0560
+instanceKlass com/sun/beans/WildcardTypeImpl
+instanceKlass com/sun/beans/introspect/PropertyInfo
+instanceKlass  @bci com/sun/beans/introspect/EventSetInfo get (Ljava/lang/Class;)Ljava/util/Map; 314 <appendix> argL0 ; # com/sun/beans/introspect/EventSetInfo$$Lambda$426+0x00000008014efee0
+instanceKlass com/sun/beans/introspect/EventSetInfo
+instanceKlass  @bci java/lang/reflect/Executable sharedToGenericString (IZ)Ljava/lang/String; 193 <appendix> argL0 ; # java/lang/reflect/Executable$$Lambda$425+0x00000008014ef8c8
+instanceKlass com/sun/beans/WeakCache
+instanceKlass com/sun/beans/TypeResolver
+instanceKlass java/beans/MethodRef
+instanceKlass com/sun/beans/introspect/MethodInfo$MethodOrder
+instanceKlass com/sun/beans/introspect/MethodInfo
+instanceKlass com/sun/beans/util/Cache$Ref
+instanceKlass com/sun/beans/util/Cache$CacheEntry
+instanceKlass com/sun/beans/util/Cache
+instanceKlass com/sun/beans/introspect/ClassInfo
+instanceKlass javax/swing/SwingContainer
+instanceKlass java/beans/JavaBean
+instanceKlass com/sun/beans/finder/ClassFinder
+instanceKlass com/sun/beans/finder/InstanceFinder
+instanceKlass java/beans/WeakIdentityMap
+instanceKlass java/beans/ThreadGroupContext
+instanceKlass  @bci groovy/lang/MetaClassImpl addProperties ()V 27 <appendix> member <vmtarget> ; # groovy/lang/MetaClassImpl$$Lambda$424+0x00000008014a8b80
+instanceKlass java/beans/BeanInfo
+instanceKlass org/codehaus/groovy/reflection/CachedClass$CachedMethodComparatorWithString
+instanceKlass org/codehaus/groovy/runtime/callsite/CallSiteArray
+instanceKlass org/codehaus/groovy/util/AbstractConcurrentMapBase
+instanceKlass org/codehaus/groovy/runtime/MetaClassHelper
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$2 lambda$initValue$4 ()[Lorg/codehaus/groovy/reflection/CachedConstructor; 44 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$2$$Lambda$423+0x00000008014a7048
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$2 lambda$initValue$4 ()[Lorg/codehaus/groovy/reflection/CachedConstructor; 34 <appendix> member <vmtarget> ; # org/codehaus/groovy/reflection/CachedClass$2$$Lambda$422+0x00000008014a6e10
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$2 lambda$initValue$4 ()[Lorg/codehaus/groovy/reflection/CachedConstructor; 23 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$2$$Lambda$421+0x00000008014a6bd0
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$2 lambda$initValue$4 ()[Lorg/codehaus/groovy/reflection/CachedConstructor; 13 <appendix> argL0 ; # org/codehaus/groovy/reflection/CachedClass$2$$Lambda$420+0x00000008014a6990
+instanceKlass org/codehaus/groovy/runtime/MethodKey
+instanceKlass groovy/lang/ClosureInvokingMethod
+instanceKlass groovy/lang/ExpandoMetaClass$Callable
+instanceKlass  @bci org/codehaus/groovy/reflection/CachedClass$2 initValue ()[Lorg/codehaus/groovy/reflection/CachedConstructor; 1 <appendix> member <vmtarget> ; # org/codehaus/groovy/reflection/CachedClass$2$$Lambda$419+0x00000008014a5708
+instanceKlass org/codehaus/groovy/runtime/metaclass/MetaMethodIndex$EntryIterator
+instanceKlass  @bci groovy/lang/MetaClassImpl <clinit> ()V 102 <appendix> argL0 ; # groovy/lang/MetaClassImpl$$Lambda$418+0x00000008014a4f08
+instanceKlass  @bci groovy/lang/MetaClassImpl <clinit> ()V 94 <appendix> argL0 ; # groovy/lang/MetaClassImpl$$Lambda$417+0x00000008014a4cf8
+instanceKlass  @bci groovy/lang/MetaClassImpl <clinit> ()V 55 <appendix> argL0 ; # groovy/lang/MetaClassImpl$$Lambda$416+0x00000008014a4ac8
+instanceKlass org/codehaus/groovy/runtime/GeneratedClosure
+instanceKlass org/gradle/api/internal/provider/MapPropertyExtensions
+instanceKlass org/w3c/dom/Document
+instanceKlass org/w3c/dom/UserDataHandler
+instanceKlass org/w3c/dom/NamedNodeMap
+instanceKlass org/w3c/dom/TypeInfo
+instanceKlass org/w3c/dom/Attr
+instanceKlass org/w3c/dom/Element
+instanceKlass org/w3c/dom/Node
+instanceKlass org/w3c/dom/NodeList
+instanceKlass org/apache/groovy/xml/extensions/XmlExtensions
+instanceKlass java/awt/LayoutManager
+instanceKlass javax/swing/ButtonModel
+instanceKlass javax/swing/AbstractButton$Handler
+instanceKlass javax/swing/event/ChangeListener
+instanceKlass javax/swing/Icon
+instanceKlass javax/swing/event/TableColumnModelListener
+instanceKlass javax/swing/ListSelectionModel
+instanceKlass java/awt/event/ItemListener
+instanceKlass javax/swing/MenuSelectionManager
+instanceKlass javax/swing/event/TableModelListener
+instanceKlass java/awt/PointerInfo
+instanceKlass javax/accessibility/AccessibleStateSet
+instanceKlass sun/awt/RequestFocusController
+instanceKlass java/awt/im/InputMethodRequests
+instanceKlass java/awt/image/BufferStrategy
+instanceKlass java/awt/dnd/DropTarget
+instanceKlass java/awt/dnd/DropTargetListener
+instanceKlass java/awt/peer/ComponentPeer
+instanceKlass sun/java2d/pipe/Region
+instanceKlass java/awt/ComponentOrientation
+instanceKlass java/awt/event/MouseWheelListener
+instanceKlass java/awt/event/HierarchyBoundsListener
+instanceKlass java/awt/event/HierarchyListener
+instanceKlass java/awt/event/InputMethodListener
+instanceKlass java/awt/event/MouseMotionListener
+instanceKlass java/awt/event/MouseListener
+instanceKlass java/awt/event/KeyListener
+instanceKlass java/awt/event/FocusListener
+instanceKlass sun/awt/ComponentFactory
+instanceKlass java/awt/BufferCapabilities
+instanceKlass java/awt/ImageCapabilities
+instanceKlass java/awt/image/ImageProducer
+instanceKlass java/awt/Cursor
+instanceKlass java/awt/image/ColorModel
+instanceKlass java/awt/im/InputContext
+instanceKlass java/awt/Toolkit
+instanceKlass java/awt/GraphicsConfiguration
+instanceKlass java/awt/Event
+instanceKlass java/awt/MenuComponent
+instanceKlass java/awt/Image
+instanceKlass javax/swing/TransferHandler$DropLocation
+instanceKlass javax/swing/InputVerifier
+instanceKlass javax/swing/event/AncestorListener
+instanceKlass javax/swing/AncestorNotifier
+instanceKlass java/beans/PropertyChangeListener
+instanceKlass java/awt/event/ComponentListener
+instanceKlass java/beans/VetoableChangeListener
+instanceKlass javax/swing/ArrayTable
+instanceKlass java/awt/AWTKeyStroke
+instanceKlass javax/swing/ActionMap
+instanceKlass javax/swing/InputMap
+instanceKlass java/awt/Insets
+instanceKlass java/awt/FontMetrics
+instanceKlass javax/swing/border/Border
+instanceKlass java/awt/Font
+instanceKlass java/util/EventObject
+instanceKlass java/awt/Color
+instanceKlass java/awt/Paint
+instanceKlass java/awt/Transparency
+instanceKlass javax/swing/plaf/ComponentUI
+instanceKlass java/awt/geom/Dimension2D
+instanceKlass java/awt/geom/Point2D
+instanceKlass java/awt/geom/RectangularShape
+instanceKlass java/awt/Shape
+instanceKlass java/awt/Graphics
+instanceKlass javax/swing/TransferHandler
+instanceKlass javax/accessibility/AccessibleContext
+instanceKlass javax/swing/table/TableColumn
+instanceKlass javax/swing/Action
+instanceKlass com/google/common/collect/TransformedIterator
+instanceKlass javax/swing/table/AbstractTableModel
+instanceKlass org/gradle/launcher/daemon/server/DaemonRegistryUnavailableExpirationStrategy$1
+instanceKlass org/gradle/cache/internal/FileBackedObjectHolder$1
+instanceKlass org/gradle/launcher/daemon/registry/PersistentDaemonRegistry$1
+instanceKlass org/gradle/launcher/daemon/server/CompatibleDaemonExpirationStrategy$1
+instanceKlass org/gradle/launcher/daemon/server/health/gc/GarbageCollectionStats
+instanceKlass javax/swing/MutableComboBoxModel
+instanceKlass java/util/concurrent/LinkedBlockingDeque$AbstractItr
+instanceKlass javax/swing/ComboBoxModel
+instanceKlass javax/swing/tree/DefaultMutableTreeNode
+instanceKlass javax/swing/AbstractListModel
+instanceKlass javax/swing/ButtonGroup
+instanceKlass javax/swing/table/TableColumnModel
+instanceKlass java/awt/event/ActionListener
+instanceKlass javax/swing/event/ListDataListener
+instanceKlass java/awt/ItemSelectable
+instanceKlass javax/swing/MenuElement
+instanceKlass javax/swing/table/TableModel
+instanceKlass java/awt/Component
+instanceKlass java/awt/MenuContainer
+instanceKlass java/awt/image/ImageObserver
+instanceKlass javax/swing/TransferHandler$HasGetTransferHandler
+instanceKlass javax/swing/SwingConstants
+instanceKlass javax/accessibility/Accessible
+instanceKlass javax/swing/tree/TreePath
+instanceKlass javax/swing/tree/MutableTreeNode
+instanceKlass javax/swing/tree/TreeNode
+instanceKlass javax/swing/ListModel
+instanceKlass org/apache/groovy/swing/extensions/SwingExtensions
+instanceKlass java/sql/SQLXML
+instanceKlass java/sql/RowId
+instanceKlass java/sql/NClob
+instanceKlass java/sql/Clob
+instanceKlass java/sql/Blob
+instanceKlass java/sql/Statement
+instanceKlass java/sql/SQLType
+instanceKlass java/sql/Array
+instanceKlass java/sql/Ref
+instanceKlass groovy/sql/GroovyResultSet
+instanceKlass java/sql/ResultSet
+instanceKlass java/sql/ResultSetMetaData
+instanceKlass java/sql/Wrapper
+instanceKlass org/apache/groovy/sql/extensions/SqlExtensions
+instanceKlass java/nio/file/WatchEvent$Modifier
+instanceKlass java/nio/file/WatchKey
+instanceKlass java/nio/file/WatchEvent$Kind
+instanceKlass java/nio/file/WatchService
+instanceKlass org/apache/groovy/dateutil/extensions/DateUtilStaticExtensions
+instanceKlass org/apache/groovy/dateutil/extensions/DateUtilExtensions
+instanceKlass java/time/zone/ZoneRules
+instanceKlass java/time/chrono/Chronology
+instanceKlass java/time/chrono/Era
+instanceKlass java/time/format/DateTimeFormatter
+instanceKlass java/time/temporal/ValueRange
+instanceKlass java/time/temporal/TemporalQuery
+instanceKlass java/time/MonthDay
+instanceKlass java/time/LocalTime
+instanceKlass java/time/Year
+instanceKlass java/time/LocalDateTime
+instanceKlass java/time/chrono/ChronoLocalDateTime
+instanceKlass java/time/OffsetDateTime
+instanceKlass java/time/Period
+instanceKlass java/time/Instant
+instanceKlass java/time/ZonedDateTime
+instanceKlass java/time/chrono/ChronoZonedDateTime
+instanceKlass java/time/OffsetTime
+instanceKlass java/time/YearMonth
+instanceKlass java/time/LocalDate
+instanceKlass java/time/chrono/ChronoLocalDate
+instanceKlass java/time/temporal/TemporalAdjuster
+instanceKlass java/time/chrono/ChronoPeriod
+instanceKlass java/time/temporal/TemporalField
+instanceKlass java/time/temporal/Temporal
+instanceKlass java/time/temporal/TemporalAccessor
+instanceKlass org/apache/groovy/datetime/extensions/DateTimeStaticExtensions
+instanceKlass org/apache/groovy/datetime/extensions/DateTimeExtensions
+instanceKlass  @bci org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$DefaultModuleListener onModule (Lorg/codehaus/groovy/runtime/m12n/ExtensionModule;)V 157 <appendix> argL0 ; # org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$DefaultModuleListener$$Lambda$415+0x000000080149ce98
+instanceKlass org/gradle/api/artifacts/ProjectDependency
+instanceKlass org/gradle/api/artifacts/SelfResolvingDependency
+instanceKlass org/gradle/api/artifacts/DependencyArtifact
+instanceKlass org/codehaus/groovy/runtime/metaclass/MethodHelper
+instanceKlass org/gradle/api/tasks/TaskDependency
+instanceKlass org/gradle/api/artifacts/dsl/DependencyModifier
+instanceKlass org/gradle/api/provider/ProviderConvertible
+instanceKlass org/gradle/api/artifacts/ExternalModuleDependency
+instanceKlass org/gradle/api/artifacts/ExternalDependency
+instanceKlass org/gradle/api/artifacts/ModuleDependency
+instanceKlass org/gradle/api/artifacts/dsl/Dependencies
+instanceKlass org/gradle/api/internal/artifacts/dsl/dependencies/DependenciesExtensionModule
+instanceKlass org/codehaus/groovy/runtime/m12n/ExtensionModule
+instanceKlass org/codehaus/groovy/runtime/m12n/PropertiesModuleFactory
+instanceKlass org/codehaus/groovy/util/URLStreams
+instanceKlass org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$DefaultModuleListener
+instanceKlass org/codehaus/groovy/runtime/m12n/ExtensionModuleScanner
+instanceKlass java/util/ResourceBundle$CacheKey
+instanceKlass java/time/ZoneId
+instanceKlass org/codehaus/groovy/runtime/DefaultGroovyStaticMethods
+instanceKlass  @bci org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl registerMethods (Ljava/lang/Class;ZZLjava/util/Map;)V 253 <appendix> argL0 ; # org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$$Lambda$414+0x000000080149a040
+instanceKlass org/codehaus/groovy/runtime/RangeInfo
+instanceKlass java/util/function/ToDoubleFunction
+instanceKlass java/util/function/ToLongFunction
+instanceKlass java/util/function/ToIntFunction
+instanceKlass java/util/function/DoubleFunction
+instanceKlass java/util/function/DoublePredicate
+instanceKlass java/util/function/LongPredicate
+instanceKlass java/util/stream/DoubleStream
+instanceKlass java/util/stream/LongStream
+instanceKlass java/util/OptionalDouble
+instanceKlass java/util/OptionalLong
+instanceKlass  @bci org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl createMetaMethodFromClass (Ljava/util/Map;Ljava/lang/Class;)V 28 <appendix> argL0 ; # org/codehaus/groovy/runtime/metaclass/MetaClassRegistryImpl$$Lambda$413+0x0000000801499788
+instanceKlass org/codehaus/groovy/runtime/NumberAwareComparator
+instanceKlass org/codehaus/groovy/runtime/EncodingGroovyMethods
+instanceKlass org/codehaus/groovy/runtime/DefaultGroovyMethodsSupport
+instanceKlass java/lang/ProcessHandle
+instanceKlass java/util/concurrent/CompletableFuture
+instanceKlass java/util/concurrent/CompletionStage
+instanceKlass java/lang/ProcessHandle$Info
+instanceKlass org/codehaus/groovy/reflection/CachedMethod$MyComparator
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 92 <appendix> member <vmtarget> ; # java/lang/SecurityManager$$Lambda$412+0x00000008014c1188
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 76 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$411+0x00000008014c0f58
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 66 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$410+0x00000008014c0d18
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 47 <appendix> member <vmtarget> ; # java/lang/SecurityManager$$Lambda$409+0x00000008014c0af0
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 31 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$408+0x00000008014c08c0
+instanceKlass  @bci java/lang/SecurityManager nonExportedPkgs (Ljava/lang/module/ModuleDescriptor;)Ljava/util/Set; 21 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$407+0x00000008014c0680
+instanceKlass  @bci java/lang/SecurityManager addNonExportedPackages (Ljava/lang/ModuleLayer;)V 59 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$406+0x00000008014c0460
+instanceKlass  @bci java/lang/SecurityManager addNonExportedPackages (Ljava/lang/ModuleLayer;)V 49 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$405+0x00000008014c0230
+instanceKlass  @bci java/lang/SecurityManager addNonExportedPackages (Ljava/lang/ModuleLayer;)V 39 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$404+0x00000008014c0000
+instanceKlass  @bci java/lang/SecurityManager addNonExportedPackages (Ljava/lang/ModuleLayer;)V 29 <appendix> member <vmtarget> ; # java/lang/SecurityManager$$Lambda$403+0x000000080117fc50
+instanceKlass  @cpi java/lang/SecurityManager 525 form vmentry <vmtarget> ; # java/lang/invoke/LambdaForm$DMH+0x0000000801494c00
+instanceKlass  @bci java/lang/SecurityManager addNonExportedPackages (Ljava/lang/ModuleLayer;)V 17 <appendix> argL0 ; # java/lang/SecurityManager$$Lambda$402+0x000000080117fa20
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$static$10 (Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/lang/String;)V 41 <appendix> argL0 ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$401+0x0000000801490d38
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$static$10 (Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/lang/String;)V 70 <appendix> argL0 ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$400+0x0000000801490b08
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 isExported (Ljava/lang/module/ModuleDescriptor;Ljava/lang/String;)Z 10 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$399+0x00000008014908c0
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 isOpen (Ljava/lang/module/ModuleDescriptor;Ljava/lang/String;)Z 10 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$398+0x0000000801490678
+instanceKlass  @cpi org/codehaus/groovy/vmplugin/v9/Java9 708 form vmentry <vmtarget> ; # java/lang/invoke/LambdaForm$DMH+0x0000000801494800
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 <clinit> ()V 69 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$397+0x0000000801490450
+instanceKlass  @cpi org/codehaus/groovy/vmplugin/v9/Java9 3507 form vmentry <vmtarget> ; # java/lang/invoke/LambdaForm$DMH+0x0000000801494400
+instanceKlass  @bci org/codehaus/groovy/vmplugin/v9/Java9 lambda$static$7 (Ljava/util/Map;Ljava/lang/module/ModuleDescriptor;)V 6 <appendix> member <vmtarget> ; # org/codehaus/groovy/vmplugin/v9/Java9$$Lambda$396+0x0000000801490228
+instanceKlass  @cpi org/codehaus/groovy/vmplugin/v9/Java9 3416 form vmentry <vmtarget> ; # java/lang/invoke/LambdaForm$DMH+0x0000000801494000
