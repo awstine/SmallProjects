@@ -34,48 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MarsPhotoAppTheme {
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = { Text("Stylists") },
-                            navigationIcon = {
-                                IconButton(onClick = { }) {
-                                    Icon(Icons.Default.ArrowBack, contentDescription = "Go back")
-                                }
-                            },
-                            actions = {},
-                        )
-                    },
-                ) { paddingValues ->
-                    Column(
-                        modifier =
-                        Modifier
-                            .padding(paddingValues)
-                            .padding(8.dp)
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        LazyColumn {
-                            items(10) {
-                                Card(
-                                    modifier =
-                                    Modifier
-                                        .padding(8.dp)
-                                        .fillMaxWidth(0.9f),
-                                    content = {
-                                        Column(
-                                            modifier = Modifier.padding(8.dp),
-                                        ) {
-                                            Text("Stylist $it")
-                                            Text("Description of stylist $it")
-                                        }
-                                    },
-                                )
-                            }
-                        }
-                    }
-                }
+
             }
         }
     }
