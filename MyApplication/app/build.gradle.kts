@@ -75,7 +75,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 //    implementation("androidx.compose.compiler:compiler:1.4.8")
-    implementation(libs.material)
+    // implementation(libs.material)
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling)
 
