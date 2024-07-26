@@ -66,7 +66,7 @@ fun GetStartedScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             ElevatedButton(
                 onClick = {
-                    navController.navigate(Screen.LogInScreen.route)
+                    navController.navigate(Screen.HomeScreen.route)
                 },
                 modifier =
                     Modifier
