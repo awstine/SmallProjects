@@ -4,6 +4,7 @@ package com.example.myapplication.Composables
 
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,7 +32,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -38,6 +40,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -57,6 +60,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
@@ -245,7 +249,9 @@ fun DrawerContent(
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { onSignOut() },
+            onClick = {
+                onSignOut()
+            },
         ) {
             Text(text = "Sign Out")
         }
@@ -299,13 +305,15 @@ fun MainContent(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(hairList) { hair ->
-                Card(
+                OutlinedCard(
                     modifier =
                         Modifier
+                            .padding(8.dp)
                             .width(250.dp)
                             .height(350.dp),
                     shape = RoundedCornerShape(8.dp),
-                    // elevation = 4.dp
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
+                    elevation = CardDefaults.cardElevation(5.dp),
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -315,27 +323,28 @@ fun MainContent(
                         Image(
                             painter = painterResource(id = hair.img),
                             contentDescription = null,
-                            modifier = Modifier,
+                            modifier = Modifier.aspectRatio(1.0f),
                         )
                         Row(
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp),
+                            modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 text = hair.hairName,
-                                modifier = Modifier.padding(8.dp),
+                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier =
+                                    Modifier
+                                        .padding(
+                                            top = 10.dp,
+                                            end = 10.dp,
+                                            bottom = 12.dp,
+                                        ),
                             )
                             FavouriteButton(hair, favouritesViewModel)
                         }
-
-//                        Text(
-//                            text = "$${hair.hairPrice}",
-//                            modifier = Modifier.padding(8.dp),
-//                        )
                     }
                 }
             }
@@ -358,13 +367,15 @@ fun MainContent(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(menHair) { Hair ->
-                Card(
+                OutlinedCard(
                     modifier =
                         Modifier
+                            .padding(8.dp)
                             .width(250.dp)
                             .height(350.dp),
                     shape = RoundedCornerShape(8.dp),
-                    // elevation = 4.dp
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
+                    elevation = CardDefaults.cardElevation(5.dp),
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -374,11 +385,20 @@ fun MainContent(
                         Image(
                             painter = painterResource(id = Hair.img),
                             contentDescription = null,
-                            modifier = Modifier,
+                            modifier = Modifier.aspectRatio(1.0f),
                         )
                         Text(
                             text = Hair.hairName,
-                            modifier = Modifier.padding(8.dp),
+                            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier =
+                                Modifier
+                                    .padding(
+                                        top = 10.dp,
+                                        end = 10.dp,
+                                        bottom = 12.dp,
+                                    ),
                         )
                         Text(
                             text = "$${Hair.hairPrice}",
@@ -406,13 +426,15 @@ fun MainContent(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(womenHair) { hare ->
-                Card(
+                OutlinedCard(
                     modifier =
                         Modifier
+                            .padding(8.dp)
                             .width(250.dp)
                             .height(350.dp),
                     shape = RoundedCornerShape(8.dp),
-                    // elevation = 4.dp
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
+                    elevation = CardDefaults.cardElevation(5.dp),
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -422,7 +444,7 @@ fun MainContent(
                         Image(
                             painter = painterResource(id = hare.img),
                             contentDescription = null,
-                            modifier = Modifier,
+                            modifier = Modifier.aspectRatio(1.0f),
                         )
                         Text(
                             text = hare.hairName,
