@@ -3,7 +3,6 @@
 package com.example.myapplication.Composables
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -34,7 +33,7 @@ import com.example.myapplication.data.Screen
 @Suppress("ktlint:standard:function-naming")
 fun GetStartedScreen(navController: NavController) {
     Surface(
-        color = MaterialTheme.colorScheme.background,
+        color = MaterialTheme.colorScheme.tertiary,
         contentColor = MaterialTheme.colorScheme.onBackground,
     ) {
         Column(
@@ -64,6 +63,7 @@ fun GetStartedScreen(navController: NavController) {
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+
             ElevatedButton(
                 onClick = {
                     navController.navigate(Screen.HomeScreen.route)
@@ -75,12 +75,12 @@ fun GetStartedScreen(navController: NavController) {
                         .size(60.dp),
                 elevation =
                     ButtonDefaults.elevatedButtonElevation(
-                        defaultElevation = 6.dp,
+                        defaultElevation = 8.dp,
                     ),
-                shape = RoundedCornerShape(35.dp),
+                shape = RoundedCornerShape(30.dp),
                 colors =
                     ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.tertiary,
+                        containerColor = MaterialTheme.colorScheme.primary,
                         contentColor = MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
