@@ -2,9 +2,6 @@
 
 package com.example.myapplication.Composables
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.AlertDialog
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
@@ -51,9 +47,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.data3.DatePickerClass
 import com.example.myapplication.data3.stylistList
-import java.sql.Date
-import java.text.SimpleDateFormat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
@@ -101,7 +96,7 @@ fun StylistsScreen(
                         Modifier
                             .padding(10.dp)
                             .height(180.dp),
-                    // shadowEevation = 10.dp
+                    // shadowElevation = 10.dp
                 ) {
                     Row(
                         modifier = Modifier.padding(16.dp),
@@ -114,6 +109,7 @@ fun StylistsScreen(
                                     .weight(2f),
                             verticalArrangement = Arrangement.Center,
                         ) {
+                            // Name of the stylist
                             Text(
                                 text = "${stylist.firstName} ${stylist.lastName}",
                                 fontSize = 24.sp,
@@ -122,6 +118,7 @@ fun StylistsScreen(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
 
+                            // if he is occupied or not
                             Text(
                                 text = stylist.state,
                                 fontSize = 14.sp,
@@ -134,8 +131,11 @@ fun StylistsScreen(
 
                             Spacer(modifier = Modifier.height(8.dp))
 
+                            // Dialog box for booking
                             DialogBox()
                         }
+
+                        // Image
                         Surface(
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier.size(width = 100.dp, height = 140.dp),
@@ -156,19 +156,19 @@ fun StylistsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
 @Composable
-@Preview
 private fun DialogBox() {
-    val openDialogOne = remember { mutableStateOf(false) }
-    val text by remember { mutableStateOf("Book") }
-    var dateResult by remember { mutableStateOf("Date Picker") }
+    val openCalendar = remember { mutableStateOf(false) }
+    val openDate = remember { mutableStateOf(false) }
+    var booked by remember { mutableStateOf("Book") }
+
     OutlinedButton(
-        onClick = { openDialogOne.value = true },
+        onClick = { openCalendar.value = true },
         shape = RoundedCornerShape(35.dp),
         colors =
             ButtonDefaults.outlinedButtonColors(
                 contentColor = MaterialTheme.colorScheme.primary,
             ),
-        modifier = Modifier.size(width = 100.dp, height = 40.dp),
+        modifier = Modifier.size(width = 150.dp, height = 40.dp),
         elevation =
             ButtonDefaults.elevation(
                 defaultElevation = 8.dp,
@@ -177,48 +177,29 @@ private fun DialogBox() {
             ),
     ) {
         Text(
-            text = text,
-            fontSize = 18.sp,
+            text = "Book",
+            fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold,
             style = MaterialTheme.typography.titleLarge,
         )
     }
-    if (openDialogOne.value) { // Check state of the dialog
-        AlertDialog(
-            modifier = Modifier.padding(12.dp),
-            onDismissRequest = { openDialogOne.value = true },
-            title = { Text(text = " My Dialog title") },
-            text = { Text(text = "Are you sure you want exit") },
-            confirmButton = {
-                TextButton(onClick = { openDialogOne.value = false }) {
-                    Text(text = "Confirm")
-                }
-            },
-            shape = RoundedCornerShape(30.dp),
-            dismissButton = {
-                TextButton(onClick = { openDialogOne.value = false }) {
-                    Text(text = "Cancel")
-                }
-            },
-        )
-    }
 
-    if (openDialogOne.value) {
+    if (openCalendar.value) {
         val datePickerState = rememberDatePickerState()
         val state = rememberDatePickerState(initialDisplayMode = DisplayMode.Input)
         val confirmEnabled = derivedStateOf { datePickerState.displayMode != null }
 
         DatePickerDialog(
-            onDismissRequest = { openDialogOne.value = false },
+            onDismissRequest = { openCalendar.value = false },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        openDialogOne.value = false
+                        openCalendar.value = false
                         var date = "No Selection"
                         if (datePickerState.selectedDateMillis != null) {
-                            date = Tools.convertToTime(datePickerState.selectedDateMillis!!)
+                            date = DatePickerClass.convertToTime(datePickerState.selectedDateMillis!!)
                         }
-                        dateResult = date
+                        booked = date
                     },
                     enabled = confirmEnabled.value,
                 ) {
@@ -228,7 +209,7 @@ private fun DialogBox() {
             dismissButton = {
                 TextButton(
                     onClick = {
-                        openDialogOne.value = false
+                        openCalendar.value = false
                     },
                 ) {
                     Text(text = "Cancel")
@@ -236,25 +217,6 @@ private fun DialogBox() {
             },
         ) {
             DatePicker(state = datePickerState)
-        }
-    }
-}
-
-class Tools {
-    companion object {
-        fun openLink(
-            eContext: Context,
-            url: String,
-        ) {
-            val openUrl = Intent(Intent.ACTION_VIEW)
-            openUrl.data = Uri.parse(url)
-            eContext.startActivity(openUrl)
-        }
-
-        fun convertToTime(time: Long): String {
-            val date = Date(time)
-            val format = SimpleDateFormat("dd MMM YYYY")
-            return format.format(date)
         }
     }
 }
