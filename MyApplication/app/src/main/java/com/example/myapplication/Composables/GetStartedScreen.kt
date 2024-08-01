@@ -56,7 +56,7 @@ fun GetStartedScreen(navController: NavController) {
                 text = "Welcome to Our Saloon App",
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(bottom = 32.dp),
+                modifier = Modifier.padding(top = 50.dp),
             )
             ElevatedButton(
                 onClick = {
@@ -64,6 +64,7 @@ fun GetStartedScreen(navController: NavController) {
                 },
                 modifier =
                     Modifier
+                        .padding(bottom = 50.dp)
                         .fillMaxWidth(0.8f)
                         .height(60.dp),
                 elevation =
