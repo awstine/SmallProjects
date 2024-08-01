@@ -2,32 +2,39 @@
 
 package com.example.myapplication.Composables
 
+import android.icu.text.SimpleDateFormat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DisplayMode
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDatePickerState
@@ -36,6 +43,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,6 +57,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.data3.DatePickerClass
 import com.example.myapplication.data3.stylistList
+import kotlinx.coroutines.launch
+import java.util.Calendar
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
@@ -132,7 +143,8 @@ fun StylistsScreen(
                             Spacer(modifier = Modifier.height(8.dp))
 
                             // Dialog box for booking
-                            DialogBox()
+                            DatePickerBox()
+                            TimePickerBox()
                         }
 
                         // Image
@@ -156,50 +168,66 @@ fun StylistsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("ktlint:standard:function-naming")
 @Composable
-private fun DialogBox() {
-    val openCalendar = remember { mutableStateOf(false) }
-    val openDate = remember { mutableStateOf(false) }
-    var booked by remember { mutableStateOf("Book") }
+private fun DatePickerBox() {
+    val openConfirmDialog = remember { mutableStateOf(false) }
+    val openDatePickerDialog = remember { mutableStateOf(false) }
+    var bookedDate by remember { mutableStateOf("Book") }
 
     OutlinedButton(
-        onClick = { openCalendar.value = true },
+        onClick = { openConfirmDialog.value = true },
         shape = RoundedCornerShape(35.dp),
-        colors =
-            ButtonDefaults.outlinedButtonColors(
-                contentColor = MaterialTheme.colorScheme.primary,
-            ),
-        modifier = Modifier.size(width = 150.dp, height = 40.dp),
-        elevation =
-            ButtonDefaults.elevation(
-                defaultElevation = 8.dp,
-                pressedElevation = 0.dp,
-                disabledElevation = 0.dp,
-            ),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary),
+        modifier = Modifier.size(width = 120.dp, height = 40.dp),
+        // elevation = 8.dp
     ) {
         Text(
-            text = "Book",
-            fontSize = 14.sp,
+            text = bookedDate,
+            fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             style = MaterialTheme.typography.titleLarge,
         )
     }
 
-    if (openCalendar.value) {
-        val datePickerState = rememberDatePickerState()
-        val state = rememberDatePickerState(initialDisplayMode = DisplayMode.Input)
-        val confirmEnabled = derivedStateOf { datePickerState.displayMode != null }
-
-        DatePickerDialog(
-            onDismissRequest = { openCalendar.value = false },
+    // Confirmation dialog
+    if (openConfirmDialog.value) {
+        AlertDialog(
+            onDismissRequest = { openConfirmDialog.value = false },
+            title = { Text(text = "Book Appointment") },
+            text = { Text(text = "Do you want to book an appointment?") },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        openCalendar.value = false
+                        openConfirmDialog.value = false
+                        openDatePickerDialog.value = true
+                    },
+                ) {
+                    Text(text = "Yes")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { openConfirmDialog.value = false }) {
+                    Text(text = "No")
+                }
+            },
+        )
+    }
+
+    // Date picker dialog
+    if (openDatePickerDialog.value) {
+        val datePickerState = rememberDatePickerState()
+        val confirmEnabled = derivedStateOf { datePickerState.selectedDateMillis != null }
+
+        DatePickerDialog(
+            onDismissRequest = { openDatePickerDialog.value = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        openDatePickerDialog.value = false
                         var date = "No Selection"
-                        if (datePickerState.selectedDateMillis != null) {
-                            date = DatePickerClass.convertToTime(datePickerState.selectedDateMillis!!)
+                        datePickerState.selectedDateMillis?.let {
+                            date = DatePickerClass.convertToTime(it)
                         }
-                        booked = date
+                        bookedDate = date
                     },
                     enabled = confirmEnabled.value,
                 ) {
@@ -207,16 +235,136 @@ private fun DialogBox() {
                 }
             },
             dismissButton = {
-                TextButton(
-                    onClick = {
-                        openCalendar.value = false
-                    },
-                ) {
+                TextButton(onClick = { openDatePickerDialog.value = false }) {
                     Text(text = "Cancel")
                 }
             },
         ) {
             DatePicker(state = datePickerState)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Suppress("ktlint:standard:function-naming")
+@Composable
+fun TimePickerBox() {
+    var showTimePicker by remember { mutableStateOf(false) }
+    var finalTime by remember { mutableStateOf("") }
+    val formatter = remember { SimpleDateFormat("hh:mm a", Locale.getDefault()) }
+    val snackbarState = remember { SnackbarHostState() }
+    val snackbarScope = rememberCoroutineScope()
+    val calendar = Calendar.getInstance()
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(onClick = { showTimePicker = true }) {
+                Text(text = "Set Time")
+            }
+
+            if (showTimePicker) {
+                TimePickerDialog(
+                    onCancel = { showTimePicker = false },
+                    onConfirm = { hour, minute ->
+                        calendar.set(Calendar.HOUR_OF_DAY, hour)
+                        calendar.set(Calendar.MINUTE, minute)
+                        finalTime = formatter.format(calendar.time)
+                        snackbarScope.launch {
+                            snackbarState.showSnackbar("Entered Time: $finalTime")
+                        }
+                        showTimePicker = false
+                    },
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(text = "Set Time: $finalTime")
+        }
+
+        SnackbarHost(snackbarState)
+    }
+}
+
+@Suppress("ktlint:standard:function-naming")
+@Composable
+fun TimePickerDialog(
+    onCancel: () -> Unit,
+    onConfirm: (hour: Int, minute: Int) -> Unit,
+) {
+    var hour by remember { mutableStateOf(12) }
+    var minute by remember { mutableStateOf(0) }
+
+    AlertDialog(
+        onDismissRequest = onCancel,
+        confirmButton = {
+            TextButton(onClick = {
+                onConfirm(hour, minute)
+            }) {
+                Text("OK")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onCancel) {
+                Text("Cancel")
+            }
+        },
+        title = {
+            Text("Select Time")
+        },
+        text = {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    NumberPicker(
+                        value = hour,
+                        onValueChange = { hour = it },
+                        range = 0..23,
+                        label = { "$it" },
+                    )
+                    Text(text = " : ")
+                    NumberPicker(
+                        value = minute,
+                        onValueChange = { minute = it },
+                        range = 0..59,
+                        label = { if (it < 10) "0$it" else "$it" },
+                    )
+                }
+            }
+        },
+    )
+}
+
+@Suppress("ktlint:standard:function-naming")
+@Composable
+fun NumberPicker(
+    value: Int,
+    onValueChange: (Int) -> Unit,
+    range: IntRange,
+    label: @Composable (Int) -> String,
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier =
+            Modifier
+                .width(60.dp)
+                .padding(16.dp),
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(onClick = {
+                if (value < range.last) onValueChange(value + 1)
+            }) {
+                Text(text = "+")
+            }
+            Text(text = label(value))
+            Button(onClick = {
+                if (value > range.first) onValueChange(value - 1)
+            }) {
+                Text(text = "-")
+            }
         }
     }
 }
