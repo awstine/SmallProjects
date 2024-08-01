@@ -10,6 +10,22 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import com.example.myapplication.R
+
+val AlegrayFamilyFontFamily =
+    FontFamily(
+        Font(R.font.alegreya_bold, FontWeight.Bold),
+        Font(R.font.alegreya_semibold, FontWeight.SemiBold),
+    )
+
+val AlegraySonsFamily =
+    FontFamily(
+        Font(R.font.alegreyasans_medium, FontWeight.Medium),
+        Font(R.font.alegreyasans_regular, FontWeight.Normal),
+    )
 
 private val DarkColorScheme =
     darkColorScheme(
