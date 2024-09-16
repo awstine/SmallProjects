@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "392556388661",
+    "project_id": "signinproject-4c43b",
+    "storage_bucket": "signinproject-4c43b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392556388661:android:47472fc0477b8000516c7c",
+        "android_client_info": {
+          "package_name": "com.example.loginscreen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5fnoSHZZ9_2vbBBidAA7vDjLg08UKn0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
