@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
@@ -71,10 +72,11 @@ fun HomeScreen(digimon: Digimon) {
 
                     Text(
                         text = digimon.level,
-                        style = MaterialTheme.typography.displayMedium,
+                        style = MaterialTheme.typography.labelMedium,
                         modifier = Modifier
                             .background(Color.LightGray)
-                            .padding(4.dp)
+                            .padding(4.dp),
+                        fontSize = 22.sp
                     )
                 }
             }

@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.retrofit2"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.retrofit2"
@@ -51,9 +51,9 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+   // implementation(libs.androidx.core.ktx)
+   // implementation(libs.androidx.lifecycle.runtime.ktx)
+   // implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -66,6 +66,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation ("androidx.core:core-ktx:1.13.0")
+    implementation ("androidx.activity:activity-compose:1.8.0") // instead of 1.9.3
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
     // retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
