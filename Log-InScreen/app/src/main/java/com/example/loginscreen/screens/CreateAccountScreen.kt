@@ -107,7 +107,7 @@ fun CreateAccountScreen(
             modifier = Modifier
                 .width(400.dp)
                 .padding(bottom = 50.dp),
-            onClick = { },
+            onClick = { navController.navigate(Screens.SignUpScreen.route) },
             shape = MaterialTheme.shapes.medium
         ) {
             Text(

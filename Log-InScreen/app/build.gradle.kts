@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.common.ktx)
+ //   implementation("com.google.firebase:firebase-firestore-ktx")
+    //implementation (platform("com.google.firebase:firebase-bom:32.2.2"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

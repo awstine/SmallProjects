@@ -14,12 +14,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,17 +44,43 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loginscreen.R
+import com.example.loginscreen.viewModel.LogInViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 @Composable
-fun LogInScreen(navController: NavController){
-    var email by remember {
-        mutableStateOf("")
-    }
-    var password by remember{
-        mutableStateOf("")
-    }
+fun LogInScreen(
+    navController: NavController,
+    logInViewModel: LogInViewModel = viewModel()
+  //  auth: FirebaseAuth
+){
+    var loginError by remember { mutableStateOf("") }
+
+//    var email by remember {mutableStateOf("") }
+//    var password by remember{mutableStateOf("") }
+
+//    var user by remember { mutableStateOf(auth.currentUser) }
+//    if (user == null){
+//        SignUpScreen(
+//            navController = navController,
+//          //  auth = auth,
+////            onSignedIn = {signedInUser ->
+////                user = signedInUser
+////            }
+//      //  )
+//    } else {
+//        HomeScreen(
+//            navController = navController,
+////            user = user!!
+////            onSignOut = {
+////                auth.signOut()
+////                user = null
+////           }
+//        )
+//    }
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -61,21 +93,19 @@ fun LogInScreen(navController: NavController){
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Default,
         )
-
-
-        TextField(
-            text = email,
-            onValueChange = {email = it},
-            placeholder = "Email",
+        TextField2(
+            text = logInViewModel.email.value,
+            onValueChange = logInViewModel::onEmailChange,
+            label = "Email",
             isPasswordField = false,
             modifier = Modifier
 
         )
 
-        TextField(
-            text = password,
-            onValueChange = {password},
-            placeholder = "Password",
+        TextField2(
+            text = logInViewModel.password.value,
+            onValueChange = logInViewModel::onPasswordChange,
+            label = "Password",
             isPasswordField = true,
             modifier = Modifier
         )
@@ -84,7 +114,16 @@ fun LogInScreen(navController: NavController){
             modifier = Modifier
                 .width(400.dp)
                 .padding(bottom = 50.dp),
-            onClick = { navController.navigate(Screens.HomeScreen.route) },
+            onClick = {
+                logInViewModel.signIn(
+                    onSignedIn = {
+                        navController.navigate(Screens.HomeScreen.route)
+                    },
+                    onError = {
+                        loginError = "Invalid Email or Password"
+                    }
+                )
+            },
             shape = MaterialTheme.shapes.medium
         ) {
             Text(
@@ -93,6 +132,15 @@ fun LogInScreen(navController: NavController){
                 fontFamily = FontFamily.Default,
                 fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight.Bold
+            )
+        }
+        //Error display
+        if (loginError.isNotEmpty()){
+            Text(
+                modifier = Modifier.padding(top = 5.dp),
+                text = loginError,
+                color = Color.Red,
+
             )
         }
 
@@ -160,11 +208,29 @@ fun LogInScreen(navController: NavController){
                     end = offset
                 )
                     .firstOrNull()?.let {
-                        //navcontroller.navigate("SignUp")
+                        navController.navigate(Screens.SignUpScreen.route)
                     }
             }
         )
     }
+}
+
+private fun signIn(
+    auth: FirebaseAuth,
+    email: String,
+    password: String,
+    onSignedIn: (user: FirebaseUser) -> Unit,
+    onSignedInError: (String) -> Unit
+){
+    auth.signInWithEmailAndPassword(email,password)
+        .addOnCompleteListener{task ->
+            if (task.isSuccessful){
+                val user = auth.currentUser
+                onSignedIn(user!!)
+            }else{
+                onSignedInError("Invalid email or password")
+            }
+        }
 }
 
 @Composable
@@ -194,21 +260,36 @@ fun LoginIcons(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextField(
+fun TextField2(
     text: String,
     modifier: Modifier,
-    placeholder: String,
+  //  placeholder: String,
+    label: String,
     onValueChange: (String)->Unit,
     isPasswordField:Boolean = false
 ){
-    OutlinedTextField(
-        value = text,
-        onValueChange = onValueChange,
-        placeholder = { Text(text = placeholder)},
-        modifier = Modifier
+    ElevatedCard(
+        modifier = modifier
             .fillMaxWidth()
-            //.width(150.dp)
-            .padding(30.dp)
-    )
+            .padding(12.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+        shape = RoundedCornerShape(60.dp)
+    ) {
+        OutlinedTextField(
+            value = text,
+            onValueChange = onValueChange,
+            label = { Text(text = label, fontSize = 15.sp) },
+            modifier = Modifier
+                .fillMaxWidth()
+                //.width(150.dp)
+                .padding(17.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Transparent,
+                unfocusedBorderColor = Color.Transparent,
+                cursorColor = Color.Black,
+            ),
+        )
+    }
 }
