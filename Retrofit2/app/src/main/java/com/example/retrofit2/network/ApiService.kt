@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("moviesList.json")
+    @GET("/api/digimon")
     suspend fun getDigimons(): List<Digimon>
 
     // ApiService instance which interface is created by Retrofit

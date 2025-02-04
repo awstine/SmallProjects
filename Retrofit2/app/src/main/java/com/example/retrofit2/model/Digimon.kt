@@ -1,7 +1,9 @@
 package com.example.retrofit2.model
 
-data class Digimon (
+import com.google.gson.annotations.SerializedName
+
+data class Digimon(
     val name: String,
-    val imageUrl: String,
-    val level: String,
+    @SerializedName("img") val imageUrl: String,
+    val level: String
 )

@@ -1,7 +1,6 @@
 package com.example.retrofit2.ui.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,17 +16,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.example.retrofit2.R
 import com.example.retrofit2.model.Digimon
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun HomeScreen(digimon: Digimon) {
     Card(
@@ -36,7 +36,7 @@ fun HomeScreen(digimon: Digimon) {
             .fillMaxWidth()
             .height(110.dp),
         shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Surface {
             Row (
@@ -65,7 +65,7 @@ fun HomeScreen(digimon: Digimon) {
                         text = digimon.name,
                         style = MaterialTheme.typography.headlineMedium,
                         modifier = Modifier
-                            .background(Color.LightGray)
+                           // .background(Color.LightGray)
                             .padding(4.dp),
                         fontWeight = FontWeight.Bold
                     )
@@ -74,7 +74,7 @@ fun HomeScreen(digimon: Digimon) {
                         text = digimon.level,
                         style = MaterialTheme.typography.labelMedium,
                         modifier = Modifier
-                            .background(Color.LightGray)
+                           // .background(Color.LightGray)
                             .padding(4.dp),
                         fontSize = 22.sp
                     )
