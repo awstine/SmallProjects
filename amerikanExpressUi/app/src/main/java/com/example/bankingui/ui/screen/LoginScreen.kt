@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -167,108 +168,198 @@ fun LoginScreen() {
             Text("Use Fingerprint")
         }
 
-        Spacer(Modifier.height(170.dp))
-        Row {
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-            )
-        }
+        Spacer(Modifier.height(120.dp))
 
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Text(
-                "Change Language",
-            )
-        }
 
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(15.dp)
-        ) {
-            OutlinedButton(
-                onClick = { },
-                modifier = Modifier
-                    .fillMaxWidth(0.5f),
-                shape = RoundedCornerShape(5.dp)
-            ) {
-                Text("English")
-            }
-            OutlinedButton(
-                onClick = { },
-                modifier = Modifier
-                    .fillMaxWidth(1f),
-                shape = RoundedCornerShape(5.dp)
-            ) {
-                Text("Spanish")
-            }
-        }
-
-        Row {
-            HorizontalDivider(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            // Apply now
-            Box(
-                modifier = Modifier
-                    .size(30.dp) // Adjust size as needed
-                    .background(Color.LightGray, CircleShape) // Circular background
-                    .padding(8.dp) // Padding inside the circle
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.registration),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
+            Row {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
                 )
             }
-            Text("Apply now", modifier = Modifier.padding(start = 8.dp))
 
-            // Amex offers
-            Box(
+            Row(
                 modifier = Modifier
-                    .size(30.dp)
-                    .background(Color.LightGray, CircleShape)
-                    .padding(8.dp)
+                    .padding(12.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start
             ) {
-                Image(
-                    painter = painterResource(R.drawable.offer),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
+                Text(
+                    "Change Language",
                 )
             }
-            Text("Amex offers", modifier = Modifier.padding(start = 8.dp))
 
-            // Resume application
-            Box(
+            Row(
                 modifier = Modifier
-                    .size(30.dp)
-                    .background(Color.LightGray, CircleShape)
-                    .padding(8.dp)
+                    .padding(12.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
             ) {
-                Image(
-                    painter = painterResource(R.drawable.resume),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
+                OutlinedButton(
+                    onClick = { },
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f),
+                    shape = RoundedCornerShape(5.dp)
+                ) {
+                    Text("English")
+                }
+                OutlinedButton(
+                    onClick = { },
+                    modifier = Modifier
+                        .fillMaxWidth(1f),
+                    shape = RoundedCornerShape(5.dp)
+                ) {
+                    Text("Spanish")
+                }
+            }
+
+            Row {
+                HorizontalDivider(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
                 )
             }
-            Text("Resume application", modifier = Modifier.padding(start = 8.dp))
-        }
+
+            Row(
+                modifier = Modifier
+                    .padding(12.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                // Apply now
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.registration),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text(
+                        "Apply now",
+                        modifier = Modifier.padding(start = 8.dp)
+                    ) // Add padding to separate text from image
+                }
+
+                // Amex offers
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.offer),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text("Amex offers", modifier = Modifier.padding(start = 8.dp))
+                }
+
+                // Resume application
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.resume),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text("Resume application", modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            Row(
+                modifier = Modifier
+                    .padding(12.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+
+                // Amex offers
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth().padding(end = 40.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.contact),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text("Contact Us", modifier = Modifier.padding(start = 8.dp))
+                }
+
+                // Resume application
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.privacy),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text("Privacy Statement", modifier = Modifier.padding(start = 8.dp))
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.wrapContentWidth()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(30.dp)
+                            .background(Color.LightGray, CircleShape)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.terms),
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    Text("Terms of Service", modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            Text("© 2021 American Express Company. All rights reserved.",)
+
     }
 }
