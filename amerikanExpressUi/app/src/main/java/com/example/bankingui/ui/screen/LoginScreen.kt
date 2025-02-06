@@ -1,6 +1,8 @@
 package com.example.bankingui.ui.screen
 
 
+import android.annotation.SuppressLint
+import androidx.biometric.BiometricManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -40,9 +43,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bankingui.R
 
+@SuppressLint("RememberReturnType")
 @Composable
 //@Preview
 fun LoginScreen() {
+    val context = LocalContext.current
+    val biometricManager = remember { BiometricManager.from(context) }
+
     var userId by remember { mutableStateOf("") }
 
     var password by remember { mutableStateOf("") }
