@@ -68,4 +68,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.orbit.mvi.orbit.viewmodel)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx) // ViewModel
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation("androidx.biometric:biometric:1.2.1")
+
 }
