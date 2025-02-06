@@ -61,7 +61,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.espresso.core)
     implementation(libs.androidx.animation.core.lint)
-    implementation(libs.androidx.biometric.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.orbit.mvi.orbit.viewmodel)
     implementation (libs.androidx.lifecycle.viewmodel.ktx) // ViewModel
     implementation (libs.androidx.lifecycle.livedata.ktx)
-    implementation("androidx.biometric:biometric:1.2.1")
+   // implementation(libs.androidx.biometric)
+   // implementation(libs.androidx.biometric.ktx)
+    implementation (libs.androidx.biometric.v120alpha05)
 
 }

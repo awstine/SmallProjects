@@ -1,28 +1,27 @@
 package com.example.bankingui
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.bankingui.ui.screen.LoginScreen
-import com.example.bankingui.ui.theme.BankingUiTheme
 
-class MainActivity : ComponentActivity() {
+import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import com.example.bankingui.ui.scree.PinScreen
+
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            BankingUiTheme {
-                LoginScreen()
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    PinScreen() // Call your PinScreen composable here
+                }
             }
         }
     }
 }
-

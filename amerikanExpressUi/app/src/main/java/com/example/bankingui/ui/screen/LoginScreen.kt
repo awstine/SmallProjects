@@ -2,7 +2,7 @@ package com.example.bankingui.ui.screen
 
 
 import android.annotation.SuppressLint
-import androidx.biometric.BiometricManager
+import android.hardware.biometrics.BiometricManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,9 +47,6 @@ import com.example.bankingui.R
 @Composable
 //@Preview
 fun LoginScreen() {
-    val context = LocalContext.current
-    val biometricManager = remember { BiometricManager.from(context) }
-
     var userId by remember { mutableStateOf("") }
 
     var password by remember { mutableStateOf("") }
