@@ -3,8 +3,10 @@ package com.example.bankingui.ui.screen
 
 import android.annotation.SuppressLint
 import android.hardware.biometrics.BiometricManager
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,6 +43,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import com.example.bankingui.R
 
 @SuppressLint("RememberReturnType")
@@ -51,6 +55,55 @@ fun LoginScreen() {
 
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+
+    // Ensure the context is a FragmentActivity
+    val activity = context as? FragmentActivity
+    if (activity == null) {
+        // Display an error message to the user
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Error: This screen requires a FragmentActivity.")
+            Text("Please check your app setup.")
+        }
+        return
+    }
+
+    // Rest of the code for biometric authentication
+    val biometricManager = remember { androidx.biometric.BiometricManager.from(context) }
+    val canAuthenticate = remember {
+        biometricManager.canAuthenticate(androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG or androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+    }
+
+    val biometricPrompt = remember {
+        BiometricPrompt(
+            activity,
+            ContextCompat.getMainExecutor(context),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    println("Authentication error: $errString")
+                }
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    println("Authentication succeeded!")
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    println("Authentication failed")
+                }
+            }
+        )
+    }
+
 
     Column(
         modifier = Modifier
@@ -169,7 +222,22 @@ fun LoginScreen() {
                     .padding(end = 7.dp)
                     .size(22.dp)
             )
-            Text("Use Fingerprint")
+            Text(
+                "Use Fingerprint",
+                modifier = Modifier
+                    .clickable {
+                        if (canAuthenticate == androidx.biometric.BiometricManager.BIOMETRIC_SUCCESS) {
+                            val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                                .setTitle("Biometric login")
+                                .setSubtitle("Log in using your biometric credential")
+                                .setNegativeButtonText("Cancel")
+                                .build()
+                            biometricPrompt.authenticate(promptInfo)
+                        } else {
+                            println("Biometric authentication not available")
+                        }
+                    }
+                )
         }
 
         Spacer(Modifier.height(120.dp))

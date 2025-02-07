@@ -70,10 +70,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.orbit.mvi.orbit.viewmodel)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx) // ViewModel
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.lifecycle.livedata.ktx)
    // implementation(libs.androidx.biometric)
    // implementation(libs.androidx.biometric.ktx)
     implementation (libs.androidx.biometric.v120alpha05)
+    implementation("androidx.navigation:navigation-compose:2.7.5")
 
 }
