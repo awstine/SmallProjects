@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                     HomeScreen(navController = navController)
                 }
                  composable(Screen.RomanticStickerScreen.route){
-                     RomanticStickerScreen(romanticList = romanticList)
+                     RomanticStickerScreen(romanticList = romanticList,navController = navController)
                  }
                 }
             }

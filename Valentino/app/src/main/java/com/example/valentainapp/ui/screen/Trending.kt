@@ -44,4 +44,13 @@ val romanticList = listOf(
                 title = "Romantic",
                 subtitle = "Romantic"
         ),
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img11,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ), Romantic(
+                image = com.example.valentainapp.R.drawable.img12,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
 )

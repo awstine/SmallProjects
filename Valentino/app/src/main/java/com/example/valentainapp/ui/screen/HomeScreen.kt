@@ -38,11 +38,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.valentainapp.R
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -166,7 +167,9 @@ fun HomeScreen() {
                 fontSize = 30.sp,
             )
             TextButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screen.RomanticStickerScreen.route)
+                },
             ) {
                 Text(
                     text = "See All",
