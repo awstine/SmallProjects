@@ -11,3 +11,37 @@ val trendingList = listOf(
         Trending(image = com.example.valentainapp.R.drawable.img4),
         Trending(image = com.example.valentainapp.R.drawable.img5),
 )
+
+data class Romantic(
+        val image: Int,
+        val title: String,
+        val subtitle: String
+)
+
+val romanticList = listOf(
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img6,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img7,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img8,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img9,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
+        Romantic(
+                image = com.example.valentainapp.R.drawable.img10,
+                title = "Romantic",
+                subtitle = "Romantic"
+        ),
+)
